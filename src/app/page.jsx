@@ -154,28 +154,28 @@ const Page = () => {
       role: "Certified Nanny",
       rating: 4.9,
       reviews: 124,
-      image: "bg-rose-100",
+      image: "https://i.ibb.co.com/27zwCGGD/image.png",
     },
     {
       name: "David R.",
       role: "Elderly Specialist",
       rating: 5.0,
       reviews: 89,
-      image: "bg-blue-100",
+      image: "https://i.ibb.co.com/1GsDLbhW/image.png",
     },
     {
       name: "Jessica T.",
       role: "Pediatric Nurse",
       rating: 4.8,
       reviews: 215,
-      image: "bg-purple-100",
+      image: "https://i.ibb.co.com/6R7k0TMW/image.png",
     },
     {
       name: "Maria G.",
       role: "Special Needs Care",
       rating: 4.9,
       reviews: 156,
-      image: "bg-green-100",
+      image: "https://i.ibb.co.com/5X5wxB86/image.png",
     },
   ];
 
@@ -218,19 +218,21 @@ const Page = () => {
       title: "10 Tips for First-Time Parents",
       category: "Parenting",
       date: "Mar 15, 2024",
-      image: "bg-orange-100",
+      image: "https://i.ibb.co.com/twGYt4JM/portrait-modern-woman.jpg",
     },
     {
       title: "Understanding Elderly Nutrition",
       category: "Senior Care",
       date: "Mar 12, 2024",
-      image: "bg-blue-100",
+      image:
+        "https://i.ibb.co.com/spxf3fZC/young-beautiful-girl-posing-black-leather-jacket-park.jpg",
     },
     {
       title: "Creating a Safe Home Environment",
       category: "Safety",
       date: "Mar 10, 2024",
-      image: "bg-green-100",
+      image:
+        "https://i.ibb.co.com/fGZpFPCC/fashion-girl-walking-sspring-park.jpg",
     },
   ];
 
@@ -317,26 +319,25 @@ const Page = () => {
           >
             <div className="flex items-center">
               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                 <CheckCircle className="w-5 h-5 text-green-600" />
+                <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
               <span>Background Checked</span>
             </div>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                 <ShieldCheck className="w-5 h-5 text-blue-600" />
+                <ShieldCheck className="w-5 h-5 text-blue-600" />
               </div>
               <span>Insured & Bonded</span>
             </div>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                 <Clock className="w-5 h-5 text-purple-600" />
+                <Clock className="w-5 h-5 text-purple-600" />
               </div>
               <span>24/7 Support</span>
             </div>
           </motion.div>
         </motion.div>
       </section>
-
       {/* 1.5 Partners Section */}
       <section className="py-10 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -355,7 +356,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 2. Stats Section */}
       <section className="py-12 bg-white border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,7 +393,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 3. About Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -452,17 +451,16 @@ const Page = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-purple-200 rounded-3xl transform rotate-3 scale-105 opacity-50"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-purple-200 rounded-3xl transform rotate-3 scale-105 opacity-50">
+              </div>  
               <div className="relative h-[500px] bg-gray-100 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center">
-                  <Heart className="w-32 h-32 text-rose-200 opacity-50" />
-                </div>
+               <img src="https://i.ibb.co.com/JWyNNW1v/image.png" className=" h-full w-full object-cover"></img>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
-
+      {/* https://i.ibb.co.com/PZqzDh1w/image.png */}
       {/* 4. Services Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -527,7 +525,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 4.2 Occasions Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -563,7 +560,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 4.5 Featured Caregivers Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -598,8 +594,9 @@ const Page = () => {
                 className="group relative"
               >
                 <div
-                  className={`aspect-[3/4] ${caregiver.image} rounded-2xl mb-4 overflow-hidden relative`}
+                  className={`aspect-[3/4]  rounded-2xl mb-4 overflow-hidden relative`}
                 >
+                  <img src={caregiver.image}></img>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">
@@ -620,7 +617,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 5. How It Works Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -679,7 +675,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 6. Why Choose Us / Features */}
       <section className="py-24 bg-gray-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -733,12 +728,26 @@ const Page = () => {
               <div className="relative bg-gray-800 rounded-2xl p-8 border border-gray-700">
                 <div className="flex items-center space-x-4 mb-8">
                   <div className="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center font-bold text-xl">
-                    <CountUp end={98} suffix="%" duration={2.5} enableScrollSpy scrollSpyOnce />
+                    <CountUp
+                      end={98}
+                      suffix="%"
+                      duration={2.5}
+                      enableScrollSpy
+                      scrollSpyOnce
+                    />
                   </div>
                   <div>
                     <div className="font-bold text-lg">Satisfaction Rate</div>
                     <div className="text-gray-400 text-sm">
-                      Based on <CountUp end={2000} suffix="+" duration={2.5} enableScrollSpy scrollSpyOnce /> reviews
+                      Based on{" "}
+                      <CountUp
+                        end={2000}
+                        suffix="+"
+                        duration={2.5}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />{" "}
+                      reviews
                     </div>
                   </div>
                 </div>
@@ -760,7 +769,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 6.5 Safety & Trust Detail */}
       <section className="py-24 bg-rose-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -772,8 +780,16 @@ const Page = () => {
               Our Vetting Process
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4 text-lg">
-              We reject <CountUp end={95} suffix="%" duration={2.5} enableScrollSpy scrollSpyOnce /> of applicants. Only the most qualified and
-              trustworthy make it to your home.
+              We reject{" "}
+              <CountUp
+                end={95}
+                suffix="%"
+                duration={2.5}
+                enableScrollSpy
+                scrollSpyOnce
+              />{" "}
+              of applicants. Only the most qualified and trustworthy make it to
+              your home.
             </p>
           </div>
 
@@ -809,40 +825,63 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 6.8 Trust Banner */}
       <section className="py-12 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="flex items-center gap-6">
-                 <div className="w-20 h-20 bg-rose-600 rounded-full flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-10 h-10 text-white" />
-                 </div>
-                 <div>
-                    <h3 className="text-2xl font-bold mb-1">
-                      <CountUp end={100} suffix="%" duration={2.5} enableScrollSpy scrollSpyOnce /> Satisfaction Guarantee
-                    </h3>
-                    <p className="text-gray-400">If you're not happy with your first booking, we'll refund you in full.</p>
-                 </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 bg-rose-600 rounded-full flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-10 h-10 text-white" />
               </div>
-              <div className="flex gap-4">
-                 <div className="text-center px-6 py-2 border-r border-gray-700 last:border-0">
-                    <div className="text-3xl font-bold text-rose-500">
-                      <CountUp end={50} suffix="K+" duration={2.5} enableScrollSpy scrollSpyOnce />
-                    </div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">Bookings</div>
-                 </div>
-                 <div className="text-center px-6 py-2 border-r border-gray-700 last:border-0">
-                    <div className="text-3xl font-bold text-rose-500">
-                      <CountUp end={0} duration={2.5} enableScrollSpy scrollSpyOnce />
-                    </div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">Safety Incidents</div>
-                 </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-1">
+                  <CountUp
+                    end={100}
+                    suffix="%"
+                    duration={2.5}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />{" "}
+                  Satisfaction Guarantee
+                </h3>
+                <p className="text-gray-400">
+                  If you're not happy with your first booking, we'll refund you
+                  in full.
+                </p>
               </div>
-           </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="text-center px-6 py-2 border-r border-gray-700 last:border-0">
+                <div className="text-3xl font-bold text-rose-500">
+                  <CountUp
+                    end={50}
+                    suffix="K+"
+                    duration={2.5}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
+                </div>
+                <div className="text-xs text-gray-500 uppercase tracking-wider">
+                  Bookings
+                </div>
+              </div>
+              <div className="text-center px-6 py-2 border-r border-gray-700 last:border-0">
+                <div className="text-3xl font-bold text-rose-500">
+                  <CountUp
+                    end={0}
+                    duration={2.5}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
+                </div>
+                <div className="text-xs text-gray-500 uppercase tracking-wider">
+                  Safety Incidents
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-
       {/* 7. Testimonials Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -909,7 +948,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 7.5 Careers Section */}
       <section className="py-24 bg-rose-900 text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10"></div>
@@ -962,7 +1000,14 @@ const Page = () => {
                   <div className="h-48 bg-rose-800/50 rounded-2xl backdrop-blur-sm p-6 border border-rose-700">
                     <Briefcase className="w-8 h-8 text-rose-300 mb-4" />
                     <div className="text-2xl font-bold">
-                      <CountUp end={25} prefix="$" suffix="/hr" duration={2.5} enableScrollSpy scrollSpyOnce />
+                      <CountUp
+                        end={25}
+                        prefix="$"
+                        suffix="/hr"
+                        duration={2.5}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
                     </div>
                     <div className="text-sm text-rose-200">
                       Average Earnings
@@ -971,7 +1016,13 @@ const Page = () => {
                   <div className="h-48 bg-rose-800/50 rounded-2xl backdrop-blur-sm p-6 border border-rose-700">
                     <HeartHandshake className="w-8 h-8 text-rose-300 mb-4" />
                     <div className="text-2xl font-bold">
-                      <CountUp end={500} suffix="+" duration={2.5} enableScrollSpy scrollSpyOnce />
+                      <CountUp
+                        end={500}
+                        suffix="+"
+                        duration={2.5}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
                     </div>
                     <div className="text-sm text-rose-200">Families helped</div>
                   </div>
@@ -980,7 +1031,14 @@ const Page = () => {
                   <div className="h-48 bg-rose-800/50 rounded-2xl backdrop-blur-sm p-6 border border-rose-700">
                     <Sparkles className="w-8 h-8 text-rose-300 mb-4" />
                     <div className="text-2xl font-bold">
-                      <CountUp end={4.9} suffix="/5" decimals={1} duration={2.5} enableScrollSpy scrollSpyOnce />
+                      <CountUp
+                        end={4.9}
+                        suffix="/5"
+                        decimals={1}
+                        duration={2.5}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
                     </div>
                     <div className="text-sm text-rose-200">
                       Sitter Happiness
@@ -989,7 +1047,13 @@ const Page = () => {
                   <div className="h-48 bg-rose-800/50 rounded-2xl backdrop-blur-sm p-6 border border-rose-700">
                     <ShieldCheck className="w-8 h-8 text-rose-300 mb-4" />
                     <div className="text-2xl font-bold">
-                      <CountUp end={100} suffix="%" duration={2.5} enableScrollSpy scrollSpyOnce />
+                      <CountUp
+                        end={100}
+                        suffix="%"
+                        duration={2.5}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
                     </div>
                     <div className="text-sm text-rose-200">Verified</div>
                   </div>
@@ -999,7 +1063,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 8. Membership Plans */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1071,7 +1134,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 9. Download App Section */}
       <section className="py-24 bg-gray-900 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1157,7 +1219,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 10. Latest Insights */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1184,8 +1245,9 @@ const Page = () => {
                 viewport={{ once: true }}
               >
                 <div
-                  className={`aspect-video ${blog.image} rounded-2xl mb-4 overflow-hidden relative`}
+                  className={`aspect-video  rounded-2xl mb-4 overflow-hidden relative`}
                 >
+                  <img src={blog.image}></img>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
@@ -1205,69 +1267,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
-      {/* 11. FAQ Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.details
-                key={index}
-                className="group bg-white rounded-xl shadow-sm border border-gray-200"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
-                  <span className="font-semibold text-gray-900">
-                    {faq.question}
-                  </span>
-                  <span className="transition-transform group-open:rotate-180">
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
-                  </span>
-                </summary>
-                <div className="px-6 pb-6 text-gray-600 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </motion.details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 11.5 Newsletter Section */}
-      <section className="py-24 bg-white border-t border-gray-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-rose-100 rounded-full text-rose-600 mb-8">
-            <Mail className="w-8 h-8" />
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Join our Parenting Community
-          </h2>
-          <p className="text-gray-600 mb-10 max-w-xl mx-auto">
-            Get expert parenting tips, activity ideas, and exclusive offers
-            delivered straight to your inbox.
-          </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="flex-1 px-6 py-4 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-            />
-            <button className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold hover:bg-gray-800 transition-colors">
-              Subscribe
-            </button>
-          </form>
-          <p className="text-xs text-gray-400 mt-6">
-            We respect your privacy. Unsubscribe at any time.
-          </p>
-        </div>
-      </section>
-
       {/* 12. Awards & Recognition Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1305,7 +1304,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 13. Our Team / Leadership Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1314,7 +1312,8 @@ const Page = () => {
               Meet Our Leadership
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Dedicated professionals committed to redefining family care standards.
+              Dedicated professionals committed to redefining family care
+              standards.
             </p>
           </div>
           <motion.div
@@ -1341,18 +1340,16 @@ const Page = () => {
                 bio: "Certified child psychologist and early education specialist.",
               },
             ].map((member, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                className="text-center"
-              >
+              <motion.div key={i} variants={fadeInUp} className="text-center">
                 <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden">
-                   {/* Placeholder for actual images */}
-                   <div className="w-full h-full bg-rose-100 flex items-center justify-center text-rose-500 text-3xl font-bold">
-                      {member.name[0]}
-                   </div>
+                  {/* Placeholder for actual images */}
+                  <div className="w-full h-full bg-rose-100 flex items-center justify-center text-rose-500 text-3xl font-bold">
+                    {member.name[0]}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                <h3 className="text-xl font-bold text-gray-900">
+                  {member.name}
+                </h3>
                 <p className="text-rose-600 font-medium mb-3">{member.role}</p>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {member.bio}
@@ -1362,7 +1359,6 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-
       {/* 14. Gallery / Moments Section */}
       <section className="py-24 bg-gray-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1371,9 +1367,7 @@ const Page = () => {
               <span className="text-rose-500 font-bold tracking-wide uppercase text-sm">
                 Moments
               </span>
-              <h2 className="mt-2 text-3xl font-bold">
-                Captured Memories
-              </h2>
+              <h2 className="mt-2 text-3xl font-bold">Captured Memories</h2>
             </div>
             <button className="text-rose-500 font-semibold hover:text-rose-400 flex items-center">
               View Instagram <Camera className="w-5 h-5 ml-2" />
@@ -1383,21 +1377,24 @@ const Page = () => {
             {[1, 2, 3, 4].map((item, i) => (
               <motion.div
                 key={i}
-                className={`relative rounded-xl overflow-hidden h-64 bg-gray-800 ${i === 0 || i === 3 ? 'md:col-span-2' : ''}`}
+                className={`relative rounded-xl overflow-hidden h-64 bg-gray-800 ${
+                  i === 0 || i === 3 ? "md:col-span-2" : ""
+                }`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                   <p className="font-medium text-white/90">Happy moments #{item}</p>
+                  <p className="font-medium text-white/90">
+                    Happy moments #{item}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
       {/* 15. Service Areas / Location Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1411,22 +1408,35 @@ const Page = () => {
                 We Are Where You Are
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Our network of professional caregivers covers major cities across the country. 
-                Wherever you call home, quality care is just around the corner.
+                Our network of professional caregivers covers major cities
+                across the country. Wherever you call home, quality care is just
+                around the corner.
               </p>
               <div className="grid grid-cols-2 gap-4">
-                 {['New York', 'Los Angeles', 'Chicago', 'Houston', 'Miami', 'Seattle'].map((city, i) => (
-                    <div key={i} className="flex items-center text-gray-700 font-medium">
-                       <MapPin className="w-5 h-5 text-rose-500 mr-2" />
-                       {city}
-                    </div>
-                 ))}
+                {[
+                  "New York",
+                  "Los Angeles",
+                  "Chicago",
+                  "Houston",
+                  "Miami",
+                  "Seattle",
+                ].map((city, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center text-gray-700 font-medium"
+                  >
+                    <MapPin className="w-5 h-5 text-rose-500 mr-2" />
+                    {city}
+                  </div>
+                ))}
               </div>
               <div className="mt-8 pt-8 border-t border-gray-100">
-                 <p className="text-sm text-gray-500 mb-4">Don't see your city?</p>
-                 <button className="text-rose-600 font-bold hover:underline flex items-center">
-                    Check coverage map <ArrowRight className="w-4 h-4 ml-2" />
-                 </button>
+                <p className="text-sm text-gray-500 mb-4">
+                  Don't see your city?
+                </p>
+                <button className="text-rose-600 font-bold hover:underline flex items-center">
+                  Check coverage map <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
               </div>
             </motion.div>
             <motion.div
@@ -1435,18 +1445,17 @@ const Page = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-               {/* Abstract Map Representation */}
-               <div className="absolute inset-0 bg-rose-50 flex items-center justify-center">
-                  <Globe className="w-48 h-48 text-rose-200" />
-                  <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-rose-500 rounded-full animate-ping"></div>
-                  <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-rose-500 rounded-full animate-ping delay-75"></div>
-                  <div className="absolute bottom-1/3 right-1/3 w-4 h-4 bg-rose-500 rounded-full animate-ping delay-150"></div>
-               </div>
+              {/* Abstract Map Representation */}
+              <div className="absolute inset-0 bg-rose-50 flex items-center justify-center">
+                <Globe className="w-48 h-48 text-rose-200" />
+                <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-rose-500 rounded-full animate-ping"></div>
+                <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-rose-500 rounded-full animate-ping delay-75"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-4 h-4 bg-rose-500 rounded-full animate-ping delay-150"></div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
-
       {/* 16. Contact / Get in Touch Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1460,58 +1469,124 @@ const Page = () => {
                   </p>
                   <div className="space-y-6">
                     <div className="flex items-center">
-                       <Phone className="w-6 h-6 text-rose-500 mr-4" />
-                       <div>
-                          <div className="text-sm text-gray-400">Call us anytime</div>
-                          <div className="font-bold text-lg">+1 (555) 123-4567</div>
-                       </div>
+                      <Phone className="w-6 h-6 text-rose-500 mr-4" />
+                      <div>
+                        <div className="text-sm text-gray-400">
+                          Call us anytime
+                        </div>
+                        <div className="font-bold text-lg">
+                          +1 (555) 123-4567
+                        </div>
+                      </div>
                     </div>
                     <div className="flex items-center">
-                       <Mail className="w-6 h-6 text-rose-500 mr-4" />
-                       <div>
-                          <div className="text-sm text-gray-400">Email us</div>
-                          <div className="font-bold text-lg">support@care.xyz</div>
-                       </div>
+                      <Mail className="w-6 h-6 text-rose-500 mr-4" />
+                      <div>
+                        <div className="text-sm text-gray-400">Email us</div>
+                        <div className="font-bold text-lg">
+                          support@care.xyz
+                        </div>
+                      </div>
                     </div>
                     <div className="flex items-center">
-                       <MapPin className="w-6 h-6 text-rose-500 mr-4" />
-                       <div>
-                          <div className="text-sm text-gray-400">Visit our office</div>
-                          <div className="font-bold text-lg">123 Care Lane, NY</div>
-                       </div>
+                      <MapPin className="w-6 h-6 text-rose-500 mr-4" />
+                      <div>
+                        <div className="text-sm text-gray-400">
+                          Visit our office
+                        </div>
+                        <div className="font-bold text-lg">
+                          123 Care Lane, NY
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="mt-12 flex space-x-4">
-                   {/* Social icons could go here */}
+                  {/* Social icons could go here */}
                 </div>
               </div>
               <div className="p-12">
-                 <form className="space-y-6">
-                    <div className="grid grid-cols-2 gap-6">
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-gray-900">First Name</label>
-                          <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="John" />
-                       </div>
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-gray-900">Last Name</label>
-                          <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="Doe" />
-                       </div>
+                <form className="space-y-6">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-900">
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                        placeholder="John"
+                      />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-sm font-bold text-gray-900">Email</label>
-                       <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="john@example.com" />
+                      <label className="text-sm font-bold text-gray-900">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                        placeholder="Doe"
+                      />
                     </div>
-                    <div className="space-y-2">
-                       <label className="text-sm font-bold text-gray-900">Message</label>
-                       <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="How can we help you?"></textarea>
-                    </div>
-                    <button className="w-full py-4 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700 transition-colors">
-                       Send Message
-                    </button>
-                 </form>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-900">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-900">
+                      Message
+                    </label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                      placeholder="How can we help you?"
+                    ></textarea>
+                  </div>
+                  <button className="w-full py-4 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700 transition-colors">
+                    Send Message
+                  </button>
+                </form>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* 11. FAQ Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.details
+                key={index}
+                className="group bg-white rounded-xl shadow-sm border border-gray-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
+                  <span className="font-semibold text-gray-900">
+                    {faq.question}
+                  </span>
+                  <span className="transition-transform group-open:rotate-180">
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 text-gray-600 leading-relaxed">
+                  {faq.answer}
+                </div>
+              </motion.details>
+            ))}
           </div>
         </div>
       </section>
