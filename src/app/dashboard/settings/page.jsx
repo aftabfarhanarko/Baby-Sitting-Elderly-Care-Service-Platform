@@ -91,8 +91,8 @@ const SettingsPage = () => {
                       </div>
                       <button
                         onClick={toggle}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                          isChecked ? 'bg-primary-600' : 'bg-gray-200 dark:bg-gray-700'
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 ${
+                          isChecked ? 'bg-rose-600' : 'bg-gray-200 dark:bg-gray-700'
                         }`}
                       >
                         <span

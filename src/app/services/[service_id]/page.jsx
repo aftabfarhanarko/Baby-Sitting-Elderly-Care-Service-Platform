@@ -43,10 +43,10 @@ const ServiceDetailPage = () => {
 
     if (!service) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
                 <div className="text-center">
-                    <h2 className="text-2xl font-bold text-gray-900">Service Not Found</h2>
-                    <Link href="/services" className="text-rose-600 hover:underline mt-4 block">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Service Not Found</h2>
+                    <Link href="/services" className="text-rose-600 dark:text-rose-400 hover:underline mt-4 block">
                         Back to Services
                     </Link>
                 </div>
@@ -55,14 +55,14 @@ const ServiceDetailPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 pt-20">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <Link href="/services" className="inline-flex items-center text-gray-600 hover:text-rose-600 mb-8 transition-colors">
+                <Link href="/services" className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 mb-8 transition-colors">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Services
                 </Link>
 
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div className={`h-64 md:h-80 w-full ${service.image} flex items-center justify-center`}>
                          <span className="text-4xl font-bold text-gray-400 opacity-50">{service.name} Image</span>
                     </div>
@@ -70,17 +70,17 @@ const ServiceDetailPage = () => {
                     <div className="p-8 md:p-12">
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
                             <div>
-                                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{service.name}</h1>
-                                <p className="text-xl text-gray-600 max-w-2xl">{service.description}</p>
+                                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{service.name}</h1>
+                                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">{service.description}</p>
                             </div>
-                            <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 min-w-[250px]">
-                                <p className="text-sm text-gray-500 mb-1">Starting from</p>
-                                <p className="text-3xl font-bold text-rose-600 mb-4">
-                                    ${service.price} <span className="text-base font-normal text-gray-500">/ day</span>
+                            <div className="bg-gray-50 dark:bg-gray-700/30 p-6 rounded-xl border border-gray-100 dark:border-gray-700 min-w-[250px]">
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Starting from</p>
+                                <p className="text-3xl font-bold text-rose-600 dark:text-rose-500 mb-4">
+                                    ${service.price} <span className="text-base font-normal text-gray-500 dark:text-gray-400">/ day</span>
                                 </p>
                                 <Link 
                                     href={`/booking/${service.id}`}
-                                    className="block w-full text-center bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
+                                    className="block w-full text-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors font-semibold"
                                 >
                                     Book Now
                                 </Link>
@@ -89,15 +89,15 @@ const ServiceDetailPage = () => {
 
                         <div className="grid md:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">About This Service</h3>
-                                <p className="text-gray-600 leading-relaxed mb-8">
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About This Service</h3>
+                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
                                     {service.longDescription}
                                 </p>
 
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">What's Included</h3>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">What's Included</h3>
                                 <ul className="space-y-3">
                                     {service.features.map((feature, index) => (
-                                        <li key={index} className="flex items-center text-gray-700">
+                                        <li key={index} className="flex items-center text-gray-700 dark:text-gray-300">
                                             <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
                                             {feature}
                                         </li>
