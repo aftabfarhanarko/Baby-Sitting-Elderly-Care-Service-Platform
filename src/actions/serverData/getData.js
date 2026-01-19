@@ -54,3 +54,14 @@ export const getSingleServices = async (id) => {
   }
   return data;
 };
+
+export const getAllServices = async () => {
+  const collection = dbConnect(collections.SERVICES);
+  const data = await collection.find({}).toArray();
+  
+  return data.map((item) => ({
+    ...item,
+    id: item._id ? item._id.toString() : undefined,
+    _id: item._id ? item._id.toString() : undefined,
+  }));
+};
