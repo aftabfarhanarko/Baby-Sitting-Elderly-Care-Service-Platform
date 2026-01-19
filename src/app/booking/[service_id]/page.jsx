@@ -1,13 +1,14 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Calendar, MapPin, DollarSign, Clock, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { Calendar, MapPin, DollarSign, Clock, CheckCircle } from "lucide-react";
 
 const BookingPage = () => {
     const params = useParams();
     const router = useRouter();
+    const { data: session, status } = useSession();
     const { service_id } = params;
-    const [user, setUser] = useState(null);
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
 
@@ -18,37 +19,28 @@ const BookingPage = () => {
         3: { name: 'Sick People Service', price: 700 }
     };
 
-    const service = services[service_id] || { name: 'Unknown Service', price: 0 };
+    const service = services[service_id] || { name: "Unknown Service", price: 0 };
 
     // Form State
     const [formData, setFormData] = useState({
         duration: 1,
-        durationType: 'days', // days or hours
-        division: '',
-        district: '',
-        city: '',
-        address: '',
-        date: ''
+        durationType: "days",
+        division: "",
+        district: "",
+        city: "",
+        address: "",
+        date: "",
     });
 
     useEffect(() => {
-        // Check authentication
-        const storedUser = localStorage.getItem('careUser');
-        if (!storedUser) {
-            // Redirect to login but store return url
-            // For now, simple redirect
-            router.push('/login');
-        } else {
-            setUser(JSON.parse(storedUser));
+        if (status === "unauthenticated") {
+            router.push("/login");
         }
-    }, [router]);
+    }, [status, router]);
 
     const calculateTotal = () => {
-        // Simple calculation logic
         let multiplier = formData.duration;
-        if (formData.durationType === 'hours') {
-             // Assuming hourly rate is 1/8th of daily rate for simplicity, or just a fixed rate
-             // Let's assume price is per day in mock data. Hourly = price / 10
+        if (formData.durationType === "hours") {
              return (service.price / 8) * formData.duration;
         }
         return service.price * formData.duration;
@@ -63,7 +55,6 @@ const BookingPage = () => {
 
     const handleConfirmBooking = () => {
         setLoading(true);
-        // Simulate API call
         setTimeout(() => {
             const booking = {
                 id: Date.now(),
@@ -71,20 +62,19 @@ const BookingPage = () => {
                 serviceName: service.name,
                 ...formData,
                 totalCost,
-                status: 'Pending',
+                status: "Pending",
                 dateCreated: new Date().toISOString()
             };
 
-            // Save to local storage
-            const existingBookings = JSON.parse(localStorage.getItem('careBookings') || '[]');
-            localStorage.setItem('careBookings', JSON.stringify([booking, ...existingBookings]));
+            const existingBookings = JSON.parse(localStorage.getItem("careBookings") || "[]");
+            localStorage.setItem("careBookings", JSON.stringify([booking, ...existingBookings]));
 
             setLoading(false);
-            router.push('/dashboard/bookings');
+            router.push("/dashboard/bookings");
         }, 1500);
     };
 
-    if (!user) return null; // Or loading spinner
+    if (status === "loading" || status === "unauthenticated") return null;
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 pb-12 transition-colors duration-200">

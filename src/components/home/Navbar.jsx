@@ -1,86 +1,66 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
-import { 
-  Heart, 
-  Menu, 
-  X, 
-  User, 
-  LogOut, 
-  LayoutDashboard, 
-  Calendar, 
+
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { useSession, signOut } from "next-auth/react";
+import {
+  Heart,
+  Menu,
+  X,
+  User,
+  LogOut,
+  LayoutDashboard,
+  Calendar,
   Settings,
   ChevronDown,
   Sun,
-  Moon
-} from 'lucide-react';
+  Moon,
+} from "lucide-react";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [user, setUser] = useState(null);
     const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
-    
+
+    const { data: session } = useSession();
+    const user = session?.user || null;
+
     const { theme, setTheme } = useTheme();
     const pathname = usePathname();
     const router = useRouter();
     const dropdownRef = useRef(null);
 
-    // Handle hydration mismatch
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
-        window.addEventListener('scroll', handleScroll);
-        
-        // Check for logged in user
-        const checkUser = () => {
-            try {
-                const storedUser = localStorage.getItem('careUser');
-                if (storedUser) {
-                    setUser(JSON.parse(storedUser));
-                } else {
-                    setUser(null);
-                }
-            } catch (error) {
-                console.error("Error parsing user data:", error);
-            }
-        };
 
-        checkUser();
-        
-        // Listen for storage changes
-        window.addEventListener('storage', checkUser);
-
-        // Click outside to close dropdown
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setProfileDropdownOpen(false);
             }
         };
-        document.addEventListener('mousedown', handleClickOutside);
+
+        window.addEventListener("scroll", handleScroll);
+        document.addEventListener("mousedown", handleClickOutside);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('storage', checkUser);
-            document.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener("scroll", handleScroll);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem('careUser');
-        setUser(null);
+    const handleLogout = async () => {
         setProfileDropdownOpen(false);
         setMobileMenuOpen(false);
-        router.push('/');
+        await signOut({ callbackUrl: "/" });
     };
 
     const toggleTheme = () => {

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "91510396-9c3a-4f11-b452-a771d42b207c",
+    "role": "user",
+    "createdAt": "2026-01-18T18:24:05.372Z",
+    "name": "Caryn Ramsey",
+    "email": "gejygibuc@example.com",
+    "contact": "+1 (684) 141-9411",
+    "nid": "Sunt magni atque ip",
+    "passwordHash": "$2b$10$N12LbRG3denJY.fDKKBEeuE/ErJ34YW/RAyzC9zXuA2H9Ibg9HWeu",
+    "provider": "credentials",
+    "photo": null
+  },
+  {
+    "id": "afcce6fd-6aaf-412d-8a40-05871817b7bf",
+    "role": "user",
+    "createdAt": "2026-01-18T18:24:32.431Z",
+    "name": "Delilah Delaney",
+    "email": "sasyda@example.com",
+    "contact": "+1 (868) 745-2176",
+    "nid": "Autem in repudiandae",
+    "passwordHash": "$2b$10$LEi93n.INQtqZuqJjPLTmey4jgRcCgyOvYZstpUJv0m.2b6WzLrW.",
+    "provider": "credentials",
+    "photo": null
+  },
+  {
+    "id": "562c1ec5-d28f-49b2-bd56-64c1b29046ab",
+    "role": "user",
+    "createdAt": "2026-01-18T18:27:41.531Z",
+    "name": "Ronan Howell",
+    "email": "niwecilumu@example.com",
+    "contact": "+1 (275) 447-3268",
+    "nid": "Obcaecati eum conseq",
+    "passwordHash": "$2b$10$7MCHnFeKr610LS9.F1L8qu5S6qUngWNOlrMaeX6jkdyJo4ROY7oqi",
+    "provider": "credentials",
+    "photo": null
+  }
+]
