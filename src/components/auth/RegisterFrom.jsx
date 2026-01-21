@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import {
   Mail,
   Lock,
@@ -14,8 +15,12 @@ import {
   Sparkles,
   UserPlus,
   ArrowRight,
+  Chrome,
 } from "lucide-react";
+import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 import { imageUpload } from "@/utils/imagesUpDB";
+// import { savedUserData } from "@/actions/userData/userDbFUnctions";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -23,6 +28,7 @@ const fadeInUp = {
 };
 
 const RegisterFrom = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -93,13 +99,27 @@ const RegisterFrom = () => {
     setImagePreview(null);
   };
 
-  const handleSubmit = async () => {
+  const handleGoogleLogin = async () => {
+    try {
+      await signIn("google", { callbackUrl: "/" });
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Google login failed");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    if (e?.preventDefault) e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
 
-    const imageUrl = await imageUpload(profileImage);
     try {
+      let imageUrl = "";
+      if (profileImage) {
+        imageUrl = await imageUpload(profileImage);
+      }
+
       const submitData = {
         name: formData.name,
         email: formData.email,
@@ -107,16 +127,61 @@ const RegisterFrom = () => {
         nidNumber: formData.nid,
         password: formData.password,
         profileImage: imageUrl,
-        role:"user",
-        createdAt:new Date().toISOString()
+        role: "user",
+        createdAt: new Date().toISOString(),
       };
 
       console.log("Form Data:", submitData);
 
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // const result = await savedUserData(submitData);
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submitData),
+      });
 
-      alert("Registration successful! Check console for data.");
+      const result = await response.json();
+      console.log(result);
+
+      if (result.success) {
+        toast.success(result.message);
+
+        // Auto login after registration
+        const loginResult = await signIn("credentials", {
+          email: submitData.email,
+          password: submitData.password,
+          redirect: false,
+        });
+
+        if (loginResult?.ok) {
+          router.push("/");
+        } else {
+          // Fallback if auto-login fails (shouldn't happen usually)
+          router.push("/login");
+        }
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          contact: "",
+          nid: "",
+          password: "",
+        });
+        setProfileImage(null);
+        setImagePreview(null);
+      } else {
+        toast.error(result.message || "Registration failed.");
+        setErrors({
+          ...errors,
+          submit: result.message || "Registration failed.",
+        });
+      }
     } catch (error) {
+      console.error(error);
+      toast.error("Registration failed. Please try again.");
       setErrors({
         ...errors,
         submit: "Registration failed. Please try again.",
@@ -128,19 +193,6 @@ const RegisterFrom = () => {
 
   return (
     <div className="min-h-screen pt-30 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Animated background elements */}
-      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-rose-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div> */}
-
       <motion.div
         initial="hidden"
         animate="visible"
@@ -399,6 +451,26 @@ const RegisterFrom = () => {
                   <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                 </>
               )}
+            </button>
+
+            <div className="relative mt-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-600"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-gray-800/40 text-gray-400">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 mt-6 bg-white hover:bg-gray-50 border border-gray-300 rounded-xl font-medium text-gray-700 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg"
+            >
+              <Chrome className="h-5 w-5" />
+              Continue with Google
             </button>
           </div>
         </div>

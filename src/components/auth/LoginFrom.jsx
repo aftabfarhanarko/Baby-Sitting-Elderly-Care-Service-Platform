@@ -1,7 +1,19 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, Sparkles, Chrome, LogIn, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  Sparkles,
+  Chrome,
+  LogIn,
+  ArrowRight,
+} from "lucide-react";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -9,6 +21,7 @@ const fadeInUp = {
 };
 
 const LoginFrom = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -34,18 +47,34 @@ const LoginFrom = () => {
     setLoading(true);
 
     try {
-      console.log("Login Data:", formData);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      alert("Login successful! Check console for data.");
+      const result = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+
+      if (result.error) {
+        setErrorMessage("Invalid email or password");
+        toast.error("Login failed. Please check your credentials.");
+      } else {
+        toast.success("Login successful!");
+        router.push("/");
+      }
     } catch (error) {
-      setErrorMessage("Invalid email or password");
+      setErrorMessage("Something went wrong");
+      toast.error("An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleGoogleLogin = () => {
-    console.log("Google login initiated");
+  const handleGoogleLogin = async () => {
+    try {
+      await signIn("google", { callbackUrl: "/" });
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Google login failed");
+    }
   };
 
   return (
