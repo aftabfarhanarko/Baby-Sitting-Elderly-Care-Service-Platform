@@ -91,12 +91,24 @@ export const getSingleCaregiver = async (id) => {
   return data;
 };
 
-// From Data Saved DB 
+// From Data Saved DB
 
 export const fromDataSaved = async (formData) => {
   const result = await dbConnect(collections.FROMDATA).insertOne(formData);
+  console.log("Data", result);
+
   return {
     acknowledged: result.acknowledged,
     insertedId: result.insertedId.toString(),
   };
-}
+};
+
+// All Bookings Data Saved One Services
+export const savedServicesData = async (bookingData) => {
+  const totalBooking = { ...bookingData, createdAt: new Date().toISOString() };
+  const result = await dbConnect(collections.BOOKING).insertOne(totalBooking);
+  return {
+    acknowledged: result.acknowledged,
+    insertedId: result.insertedId.toString(),
+  };
+};

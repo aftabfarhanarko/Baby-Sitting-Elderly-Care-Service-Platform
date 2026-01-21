@@ -5,7 +5,8 @@ export const collections = {
   SERVICES: "services",
   USER: "users",
   CAREGIVERS:"caregivers",
-  FROMDATA:"fromData"
+  FROMDATA:"fromData",
+  BOOKING:"bookingServices"
 };
 
 const { MongoClient, ServerApiVersion } = require("mongodb");

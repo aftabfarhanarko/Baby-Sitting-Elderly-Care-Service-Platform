@@ -44,10 +44,11 @@ import {
   Filter,
   Sparkles,
   Zap,
-  Quote
+  Quote,
 } from "lucide-react";
 import CountUp from "react-countup";
 import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../modal/Modal";
 
 const iconMap = {
   Baby,
@@ -96,19 +97,29 @@ const staggerContainer = {
 
 const ServiceDetailContent = ({ service }) => {
   const [activeImage, setActiveImage] = useState(0);
+  const [isOpenModal, SetIsOpenModal] = useState(false);
+  const [locationData, setLocationData] = useState([]);
+
+  React.useEffect(() => {
+    fetch("/resisterData.json")
+      .then((res) => res.json())
+      .then((data) => setLocationData(data))
+      .catch((err) => console.error("Failed to load location data", err));
+  }, []);
 
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-md mx-auto">
           <div className="w-20 h-20 bg-rose-50 dark:bg-rose-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
-             <Search className="w-10 h-10 text-rose-500" />
+            <Search className="w-10 h-10 text-rose-500" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Service Not Found
           </h2>
           <p className="text-gray-500 dark:text-gray-400 mb-8">
-            The service you are looking for might have been removed or is temporarily unavailable.
+            The service you are looking for might have been removed or is
+            temporarily unavailable.
           </p>
           <button
             onClick={alert("Set Now")}
@@ -124,18 +135,32 @@ const ServiceDetailContent = ({ service }) => {
   const IconComponent = iconMap[service.icon] || Baby;
   const images = Array.isArray(service.images) ? service.images : [];
   const features = Array.isArray(service.features) ? service.features : [];
-  const caregiverRequirements = Array.isArray(service.caregiverRequirements) ? service.caregiverRequirements : [];
-  const additionalServices = Array.isArray(service.additionalServices) ? service.additionalServices : [];
-  const customerReviews = Array.isArray(service.customerReviews) ? service.customerReviews : [];
+  const caregiverRequirements = Array.isArray(service.caregiverRequirements)
+    ? service.caregiverRequirements
+    : [];
+  const additionalServices = Array.isArray(service.additionalServices)
+    ? service.additionalServices
+    : [];
+  const customerReviews = Array.isArray(service.customerReviews)
+    ? service.customerReviews
+    : [];
   const serviceAvailability = service.serviceAvailability || {};
-  const availabilityDays = Array.isArray(serviceAvailability.days) ? serviceAvailability.days : [];
+  const availabilityDays = Array.isArray(serviceAvailability.days)
+    ? serviceAvailability.days
+    : [];
+
+  const showModal = () => {
+    SetIsOpenModal(true);
+    console.log("Data Open");
+    
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-sans relative overflow-hidden">
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
@@ -152,7 +177,7 @@ const ServiceDetailContent = ({ service }) => {
 
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Main Content - Left Column */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-2 space-y-8"
             initial="hidden"
             animate="visible"
@@ -164,7 +189,7 @@ const ServiceDetailContent = ({ service }) => {
               className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-rose-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              
+
               <div className="flex flex-col md:flex-row items-start justify-between gap-6 relative z-10">
                 <div className="flex items-start gap-6">
                   <div
@@ -176,14 +201,14 @@ const ServiceDetailContent = ({ service }) => {
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                         <span className="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-wider border border-rose-100 dark:border-rose-900/30">
-                            Premium Service
-                         </span>
-                         {service.category && (
-                             <span className="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase tracking-wider">
-                                {service.category}
-                             </span>
-                         )}
+                      <span className="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-wider border border-rose-100 dark:border-rose-900/30">
+                        Premium Service
+                      </span>
+                      {service.category && (
+                        <span className="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase tracking-wider">
+                          {service.category}
+                        </span>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight mb-3">
                       {service.name}
@@ -196,7 +221,7 @@ const ServiceDetailContent = ({ service }) => {
                             ? (
                                 customerReviews.reduce(
                                   (acc, rev) => acc + rev.rating,
-                                  0
+                                  0,
                                 ) / customerReviews.length
                               ).toFixed(1)
                             : "New"}
@@ -206,15 +231,17 @@ const ServiceDetailContent = ({ service }) => {
                         </span>
                       </div>
                       <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                         <ShieldCheck className="w-4 h-4 text-green-500" />
-                         Verified Provider
+                        <ShieldCheck className="w-4 h-4 text-green-500" />
+                        Verified Provider
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="text-left md:text-right bg-gray-50 dark:bg-gray-700/30 p-4 rounded-2xl border border-gray-100 dark:border-gray-700/50 min-w-[140px]">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Starting at</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                    Starting at
+                  </p>
                   <div className="text-3xl font-extrabold text-gray-900 dark:text-white flex items-center md:justify-end gap-1">
                     <span className="text-lg text-gray-400 align-top">$</span>
                     <CountUp
@@ -230,13 +257,13 @@ const ServiceDetailContent = ({ service }) => {
               </div>
 
               <div className="mt-8 pt-8 border-t border-gray-100 dark:border-gray-700/50">
-                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-purple-500" />
-                    About this Service
-                 </h3>
-                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {service.detailedDescription || service.description}
-                 </p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-purple-500" />
+                  About this Service
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {service.detailedDescription || service.description}
+                </p>
               </div>
 
               {/* Image Gallery */}
@@ -274,21 +301,23 @@ const ServiceDetailContent = ({ service }) => {
 
               {/* Features Grid */}
               <div className="mt-10">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Key Features</h3>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {features.map((feature, idx) => (
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                  Key Features
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {features.map((feature, idx) => (
                     <div
-                        key={idx}
-                        className="flex items-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 hover:border-rose-200 dark:hover:border-rose-900/30 transition-colors group"
+                      key={idx}
+                      className="flex items-center p-4 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 hover:border-rose-200 dark:hover:border-rose-900/30 transition-colors group"
                     >
-                        <div className="w-8 h-8 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center mr-3 shadow-sm text-green-500 group-hover:text-green-600 group-hover:scale-110 transition-all">
-                            <CheckCircle className="w-5 h-5" />
-                        </div>
-                        <span className="text-gray-700 dark:text-gray-200 font-medium">
+                      <div className="w-8 h-8 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center mr-3 shadow-sm text-green-500 group-hover:text-green-600 group-hover:scale-110 transition-all">
+                        <CheckCircle className="w-5 h-5" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-200 font-medium">
                         {feature}
-                        </span>
+                      </span>
                     </div>
-                    ))}
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -300,7 +329,7 @@ const ServiceDetailContent = ({ service }) => {
                 className="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow"
               >
                 <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-900/20 flex items-center justify-center mb-6 text-rose-600 dark:text-rose-400">
-                     <ShieldCheck className="w-6 h-6" />
+                  <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   Caregiver Requirements
@@ -323,7 +352,7 @@ const ServiceDetailContent = ({ service }) => {
                 className="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow"
               >
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
-                     <Car className="w-6 h-6" />
+                  <Car className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   Additional Services
@@ -348,14 +377,14 @@ const ServiceDetailContent = ({ service }) => {
               className="bg-white dark:bg-gray-800 rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-gray-700"
             >
               <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    Customer Reviews
-                  </h3>
-                  <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700/50 rounded-xl text-sm font-bold text-gray-600 dark:text-gray-300">
-                     {customerReviews.length} Verified Reviews
-                  </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Customer Reviews
+                </h3>
+                <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700/50 rounded-xl text-sm font-bold text-gray-600 dark:text-gray-300">
+                  {customerReviews.length} Verified Reviews
+                </div>
               </div>
-              
+
               <div className="grid gap-6">
                 {customerReviews.map((review, idx) => (
                   <div
@@ -364,12 +393,12 @@ const ServiceDetailContent = ({ service }) => {
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 font-bold text-sm">
-                              {review.user?.charAt(0) || "U"}
-                          </div>
-                          <h4 className="font-bold text-gray-900 dark:text-white">
-                            {review.user}
-                          </h4>
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 font-bold text-sm">
+                          {review.user?.charAt(0) || "U"}
+                        </div>
+                        <h4 className="font-bold text-gray-900 dark:text-white">
+                          {review.user}
+                        </h4>
                       </div>
                       <div className="flex items-center gap-1 bg-white dark:bg-gray-800 px-2 py-1 rounded-lg border border-gray-100 dark:border-gray-700">
                         {Array.from({ length: 5 }).map((_, i) => (
@@ -385,10 +414,10 @@ const ServiceDetailContent = ({ service }) => {
                       </div>
                     </div>
                     <div className="relative pl-6">
-                        <Quote className="w-4 h-4 text-gray-300 dark:text-gray-600 absolute left-0 top-0 transform -scale-x-100" />
-                        <p className="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                      <Quote className="w-4 h-4 text-gray-300 dark:text-gray-600 absolute left-0 top-0 transform -scale-x-100" />
+                      <p className="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
                         {review.comment}
-                        </p>
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -398,24 +427,24 @@ const ServiceDetailContent = ({ service }) => {
 
           {/* Sidebar - Right Column */}
           <div className="relative">
-            <motion.div 
-                className="space-y-8 sticky top-28"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+            <motion.div
+              className="space-y-8 sticky top-28"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               {/* Booking Card */}
               <div className="bg-white dark:bg-gray-800 rounded-[2.5rem] p-8 shadow-xl shadow-rose-500/5 border border-gray-100 dark:border-gray-700 overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-rose-500/10 to-transparent rounded-bl-[2.5rem] -mr-8 -mt-8" />
-                
+
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 relative z-10">
                   Book This Service
                 </h3>
-                
+
                 <div className="space-y-6 mb-8 relative z-10">
                   <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
                     <div className="w-10 h-10 rounded-xl bg-white dark:bg-gray-800 flex items-center justify-center text-rose-500 shadow-sm">
-                        <Calendar className="w-5 h-5" />
+                      <Calendar className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide mb-1">
@@ -426,10 +455,10 @@ const ServiceDetailContent = ({ service }) => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
                     <div className="w-10 h-10 rounded-xl bg-white dark:bg-gray-800 flex items-center justify-center text-blue-500 shadow-sm">
-                        <Clock className="w-5 h-5" />
+                      <Clock className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide mb-1">
@@ -442,44 +471,45 @@ const ServiceDetailContent = ({ service }) => {
                   </div>
                 </div>
 
-                <Link
-                  href={`/booking/${service._id}`}
+                <button
+                  onClick={showModal}
                   className="group relative block w-full py-4 px-6 bg-gradient-to-r from-rose-600 to-purple-600 text-white rounded-xl font-bold text-center shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:-translate-y-0.5 transition-all overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                      Book Now <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    Book Now{" "}
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                </Link>
-                
+                </button>
+
                 <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-                    <ShieldCheck className="w-3 h-3 text-green-500" />
-                    Secure booking & free cancellation
+                  <ShieldCheck className="w-3 h-3 text-green-500" />
+                  Secure booking & free cancellation
                 </div>
               </div>
 
               {/* Contact Info */}
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-[2rem] p-8 border border-blue-100 dark:border-blue-800/50 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full blur-xl" />
-                
+
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 relative z-10">
                   Have Questions?
                 </h3>
                 <div className="space-y-4 relative z-10">
                   <div className="flex items-center gap-4 group">
                     <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm group-hover:scale-110 transition-transform">
-                        <Phone className="w-4 h-4" />
+                      <Phone className="w-4 h-4" />
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {service.contactInfo?.phone}
+                      {service.contactInfo?.phone}
                     </span>
                   </div>
                   <div className="flex items-center gap-4 group">
                     <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm group-hover:scale-110 transition-transform">
-                        <Mail className="w-4 h-4" />
+                      <Mail className="w-4 h-4" />
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {service.contactInfo?.email}
+                      {service.contactInfo?.email}
                     </span>
                   </div>
                 </div>
@@ -488,6 +518,13 @@ const ServiceDetailContent = ({ service }) => {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isOpenModal}
+        onClose={() => SetIsOpenModal(false)}
+        service={service}
+        locationData={locationData}
+        SetIsOpenModal={SetIsOpenModal}
+      />
     </div>
   );
 };

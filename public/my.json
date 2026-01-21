@@ -1,0 +1,299 @@
+[
+  {
+    "name": "Baby Care",
+    "icon": "Baby",
+    "description": "Professional and loving care for newborns and infants.",
+    "color": "bg-pink-100 text-pink-600 dark:bg-pink-900/20 dark:text-pink-400",
+    "priceVal": 30,
+    "features": [
+      "Feeding Assistance",
+      "Diaper Changing",
+      "Sleep Monitoring",
+      "Playtime Engagement"
+    ],
+    "detailedDescription": "Providing attentive and nurturing baby care to ensure your child's safety and happiness.",
+    "images": [
+      "https://example.com/images/babycare1.jpg",
+      "https://example.com/images/babycare2.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "hours": "8am - 8pm"
+    },
+    "caregiverRequirements": [
+      "Experienced with infants",
+      "Certified in infant CPR",
+      "Patient and gentle",
+      "Background checked"
+    ],
+    "additionalServices": ["Parental Guidance", "Nutrition Advice"],
+    "contactInfo": {
+      "phone": "+123-456-7890",
+      "email": "babycare@example.com"
+    }
+  },
+  {
+    "name": "Baby Care",
+    "icon": "Baby",
+    "description": "Gentle and attentive care for babies and toddlers.",
+    "color": "bg-pink-200 text-pink-700 dark:bg-pink-800/25 dark:text-pink-500",
+    "priceVal": 28,
+    "features": [
+      "Bathing Assistance",
+      "Feeding",
+      "Nap Supervision",
+      "Developmental Play"
+    ],
+    "detailedDescription": "Ensuring your baby receives personalized care with warmth and professionalism.",
+    "images": [
+      "https://example.com/images/babycare3.jpg",
+      "https://example.com/images/babycare4.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Wednesday", "Friday"],
+      "hours": "9am - 6pm"
+    },
+    "caregiverRequirements": [
+      "CPR Certified",
+      "Experienced with toddlers",
+      "Loving and patient",
+      "Background checked"
+    ],
+    "additionalServices": ["Sleep Training", "Early Learning Activities"],
+    "contactInfo": {
+      "phone": "+123-456-7893",
+      "email": "babycare2@example.com"
+    }
+  },
+  {
+    "name": "Elderly Service",
+    "icon": "Elderly",
+    "description": "Supportive care for elderly individuals promoting independence and well-being.",
+    "color": "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-500",
+    "priceVal": 35,
+    "features": [
+      "Medication Reminders",
+      "Mobility Assistance",
+      "Meal Preparation",
+      "Companionship"
+    ],
+    "detailedDescription": "Dedicated elderly care services to enhance quality of life and comfort for seniors.",
+    "images": [
+      "https://example.com/images/elderlyservice1.jpg",
+      "https://example.com/images/elderlyservice2.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "hours": "24/7"
+    },
+    "caregiverRequirements": [
+      "Experienced with elderly care",
+      "CPR and First Aid certified",
+      "Compassionate and patient",
+      "Background checked"
+    ],
+    "additionalServices": ["Physical Therapy Support", "Transportation Assistance"],
+    "contactInfo": {
+      "phone": "+123-456-7891",
+      "email": "elderlyservice@example.com"
+    }
+  },
+  {
+    "name": "Elderly Service",
+    "icon": "Elderly",
+    "description": "Comprehensive care for elderly with emphasis on health and companionship.",
+    "color": "bg-yellow-200 text-yellow-800 dark:bg-yellow-800/25 dark:text-yellow-600",
+    "priceVal": 38,
+    "features": [
+      "Personal Hygiene Assistance",
+      "Medication Management",
+      "Light Housekeeping",
+      "Emotional Support"
+    ],
+    "detailedDescription": "Ensuring elderly clients receive respectful and attentive care tailored to their needs.",
+    "images": [
+      "https://example.com/images/elderlyservice3.jpg",
+      "https://example.com/images/elderlyservice4.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Wednesday", "Friday"],
+      "hours": "7am - 10pm"
+    },
+    "caregiverRequirements": [
+      "Certified Caregivers",
+      "Experience in dementia care",
+      "Kind and respectful",
+      "Background checked"
+    ],
+    "additionalServices": ["Memory Care", "Transportation"],
+    "contactInfo": {
+      "phone": "+123-456-7894",
+      "email": "elderlyservice2@example.com"
+    }
+  },
+  {
+    "name": "Sick People Service",
+    "icon": "MedicalCross",
+    "description": "Professional care and support for individuals recovering from illness.",
+    "color": "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400",
+    "priceVal": 45,
+    "features": [
+      "Medication Management",
+      "Wound Care",
+      "Physical Assistance",
+      "Emotional Support"
+    ],
+    "detailedDescription": "Providing skilled care and comfort to patients during illness or recovery periods.",
+    "images": [
+      "https://example.com/images/sickpeopleservice1.jpg",
+      "https://example.com/images/sickpeopleservice2.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "hours": "24/7"
+    },
+    "caregiverRequirements": [
+      "Certified Nursing Assistants",
+      "Experienced in wound care",
+      "Empathetic and attentive",
+      "Background checked"
+    ],
+    "additionalServices": ["Physical Therapy", "Nutrition Support"],
+    "contactInfo": {
+      "phone": "+123-456-7892",
+      "email": "sickpeopleservice@example.com"
+    }
+  },
+  {
+    "name": "Sick People Service",
+    "icon": "MedicalCross",
+    "description": "Caring support for patients with chronic illnesses.",
+    "color": "bg-blue-200 text-blue-700 dark:bg-blue-800/25 dark:text-blue-500",
+    "priceVal": 50,
+    "features": [
+      "Chronic Disease Monitoring",
+      "Medication Assistance",
+      "Mobility Support",
+      "Emotional Counseling"
+    ],
+    "detailedDescription": "Comprehensive care focused on improving the quality of life for chronically ill patients.",
+    "images": [
+      "https://example.com/images/sickpeopleservice3.jpg",
+      "https://example.com/images/sickpeopleservice4.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Tuesday", "Thursday", "Friday"],
+      "hours": "8am - 8pm"
+    },
+    "caregiverRequirements": [
+      "Experienced caregivers",
+      "Certified in chronic care",
+      "Compassionate",
+      "Background checked"
+    ],
+    "additionalServices": ["Counseling", "Diet Planning"],
+    "contactInfo": {
+      "phone": "+123-456-7895",
+      "email": "sickpeopleservice2@example.com"
+    }
+  },
+  {
+    "name": "Baby Care",
+    "icon": "Baby",
+    "description": "Expert care focused on infant development and safety.",
+    "color": "bg-pink-300 text-pink-700 dark:bg-pink-700/30 dark:text-pink-500",
+    "priceVal": 32,
+    "features": [
+      "Early Development Activities",
+      "Feeding & Hygiene",
+      "Sleep Schedule Management",
+      "Interactive Play"
+    ],
+    "detailedDescription": "Providing a safe and stimulating environment for your baby's growth.",
+    "images": [
+      "https://example.com/images/babycare5.jpg",
+      "https://example.com/images/babycare6.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Tuesday", "Thursday", "Saturday"],
+      "hours": "10am - 6pm"
+    },
+    "caregiverRequirements": [
+      "CPR Certified",
+      "Experienced with infants",
+      "Patient and attentive",
+      "Background checked"
+    ],
+    "additionalServices": ["Parental Workshops", "Health Monitoring"],
+    "contactInfo": {
+      "phone": "+123-456-7896",
+      "email": "babycare3@example.com"
+    }
+  },
+  {
+    "name": "Elderly Service",
+    "icon": "Elderly",
+    "description": "Compassionate elderly care supporting physical and emotional health.",
+    "color": "bg-yellow-300 text-yellow-800 dark:bg-yellow-700/30 dark:text-yellow-600",
+    "priceVal": 37,
+    "features": [
+      "Medication Assistance",
+      "Personal Care",
+      "Social Engagement",
+      "Light Housekeeping"
+    ],
+    "detailedDescription": "Helping seniors live comfortably with respectful and professional care.",
+    "images": [
+      "https://example.com/images/elderlyservice5.jpg",
+      "https://example.com/images/elderlyservice6.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Friday", "Sunday"],
+      "hours": "9am - 7pm"
+    },
+    "caregiverRequirements": [
+      "Experienced caregivers",
+      "CPR certified",
+      "Empathetic and respectful",
+      "Background checked"
+    ],
+    "additionalServices": ["Social Activities", "Transport Assistance"],
+    "contactInfo": {
+      "phone": "+123-456-7897",
+      "email": "elderlyservice3@example.com"
+    }
+  },
+  {
+    "name": "Sick People Service",
+    "icon": "MedicalCross",
+    "description": "Skilled care tailored for patients needing post-operative support.",
+    "color": "bg-blue-300 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500",
+    "priceVal": 48,
+    "features": [
+      "Post-operative Care",
+      "Medication Management",
+      "Mobility Assistance",
+      "Emotional Support"
+    ],
+    "detailedDescription": "Ensuring safe recovery with compassionate and professional nursing care.",
+    "images": [
+      "https://example.com/images/sickpeopleservice5.jpg",
+      "https://example.com/images/sickpeopleservice6.jpg"
+    ],
+    "serviceAvailability": {
+      "days": ["Monday", "Wednesday", "Friday"],
+      "hours": "7am - 7pm"
+    },
+    "caregiverRequirements": [
+      "Certified Nursing Assistants",
+      "Experienced in post-op care",
+      "Compassionate",
+      "Background checked"
+    ],
+    "additionalServices": ["Physical Therapy", "Nutrition Advice"],
+    "contactInfo": {
+      "phone": "+123-456-7898",
+      "email": "sickpeopleservice3@example.com"
+    }
+  }
+]

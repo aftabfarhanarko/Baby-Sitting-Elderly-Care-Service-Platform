@@ -45,7 +45,7 @@ import {
   Sparkles,
   ShieldCheck,
   Zap,
-  MapPin
+  MapPin,
 } from "lucide-react";
 
 const iconMap = {
@@ -217,52 +217,55 @@ export default function ServicesPageContent() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-sans">
-       {/* Background Elements */}
-       <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-500/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
-       </div>
+      {/* Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-500/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
+      </div>
 
       {/* Premium Header / Hero */}
       <div className="relative z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700/50 pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-             <div className="absolute -top-[50%] -right-[10%] w-[800px] h-[800px] bg-gradient-to-br from-rose-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -top-[50%] -right-[10%] w-[800px] h-[800px] bg-gradient-to-br from-rose-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.div 
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.6 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 text-sm font-bold tracking-wide uppercase mb-6 border border-rose-100 dark:border-rose-500/20 shadow-sm">
-               <Sparkles className="w-4 h-4 fill-current" />
-               Premium Care Services
+              <Sparkles className="w-4 h-4 fill-current" />
+              Premium Care Services
             </div>
             <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
-              Professional Care <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600">Tailored For You</span>
+              Professional Care <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600">
+                Tailored For You
+              </span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Discover our comprehensive range of care services designed to provide comfort, safety, and peace of mind for your family.
+              Discover our comprehensive range of care services designed to
+              provide comfort, safety, and peace of mind for your family.
             </p>
 
             {/* Header Search Bar */}
             <div className="max-w-2xl mx-auto relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
-                <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex items-center p-2 transition-all group-hover:scale-[1.01]">
-                    <Search className="w-6 h-6 text-gray-400 ml-4" />
-                    <input 
-                        type="text"
-                        placeholder="Search services (e.g., 'Nanny', 'Senior Care')..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="flex-1 bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white placeholder-gray-400 px-4 py-3 text-lg outline-none"
-                    />
-                    <button className="hidden sm:flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-semibold transition-all shadow-lg shadow-rose-500/20 hover:shadow-rose-500/40">
-                        Search
-                    </button>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex items-center p-2 transition-all group-hover:scale-[1.01]">
+                <Search className="w-6 h-6 text-gray-400 ml-4" />
+                <input
+                  type="text"
+                  placeholder="Search services (e.g., 'Nanny', 'Senior Care')..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="flex-1 bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white placeholder-gray-400 px-4 py-3 text-lg outline-none"
+                />
+                <button className="hidden sm:flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-semibold transition-all shadow-lg shadow-rose-500/20 hover:shadow-rose-500/40">
+                  Search
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -270,9 +273,8 @@ export default function ServicesPageContent() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 items-start">
-           
-           {/* Mobile Filter Toggle */}
-           <div className="lg:hidden w-full mb-4">
+          {/* Mobile Filter Toggle */}
+          <div className="lg:hidden w-full mb-4">
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white font-medium"
@@ -292,7 +294,10 @@ export default function ServicesPageContent() {
               <h3 className="font-bold text-lg text-gray-900 dark:text-white">
                 Filters
               </h3>
-              <button onClick={() => setIsFilterOpen(false)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+              <button
+                onClick={() => setIsFilterOpen(false)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+              >
                 <X className="w-5 h-5 text-gray-500" />
               </button>
             </div>
@@ -314,7 +319,9 @@ export default function ServicesPageContent() {
                     }`}
                   >
                     {cat}
-                    {selectedCategory === cat && <CheckCircle className="w-4 h-4" />}
+                    {selectedCategory === cat && (
+                      <CheckCircle className="w-4 h-4" />
+                    )}
                   </button>
                 ))}
               </div>
@@ -338,7 +345,9 @@ export default function ServicesPageContent() {
                 />
                 <div className="flex justify-between text-sm font-medium text-gray-600 dark:text-gray-400 mt-3">
                   <span>$0</span>
-                  <span className="text-rose-600 dark:text-rose-400">${priceRange[1]}</span>
+                  <span className="text-rose-600 dark:text-rose-400">
+                    ${priceRange[1]}
+                  </span>
                 </div>
               </div>
             </div>
@@ -361,17 +370,17 @@ export default function ServicesPageContent() {
                   Sort by:
                 </span>
                 <div className="relative">
-                    <select
+                  <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
                     className="appearance-none pl-4 pr-10 py-2.5 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 text-gray-900 dark:text-white text-sm font-medium cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                    >
+                  >
                     <option value="featured">Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
                     <option value="rating">Rating</option>
-                    </select>
-                    <ChevronRight className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none" />
+                  </select>
+                  <ChevronRight className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -387,9 +396,9 @@ export default function ServicesPageContent() {
                     <div className="h-16 w-16 bg-gray-200 dark:bg-gray-700 rounded-2xl mb-6"></div>
                     <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
                     <div className="space-y-3">
-                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
-                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
-                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
                     </div>
                   </div>
                 ))}
@@ -403,7 +412,8 @@ export default function ServicesPageContent() {
                   No services found
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-8">
-                  We couldn't find any services matching your current filters. Try adjusting your search terms.
+                  We couldn't find any services matching your current filters.
+                  Try adjusting your search terms.
                 </p>
                 <button
                   onClick={() => {
@@ -437,71 +447,78 @@ export default function ServicesPageContent() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         className="group relative bg-white dark:bg-gray-800 rounded-[2rem] p-2 hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-gray-700 hover:border-rose-100 dark:hover:border-rose-900/50 hover:shadow-2xl hover:shadow-rose-500/10 flex flex-col h-full"
                       >
-                         {/* Card Content Container */}
-                         <div className="p-6 flex flex-col h-full">
-                            {/* Header: Icon & Price */}
-                            <div className="flex justify-between items-start mb-6">
-                                <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center ${service.color || "bg-blue-50 text-blue-600"} group-hover:scale-110 transition-transform duration-500`}>
-                                    <div className="absolute inset-0 bg-current opacity-10 rounded-2xl"></div>
-                                    <IconComponent className="w-8 h-8 relative z-10" />
-                                    {/* Decorative spark */}
-                                    <Zap className="w-4 h-4 absolute -top-2 -right-2 text-yellow-400 fill-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity delay-100" />
+                        {/* Card Content Container */}
+                        <div className="p-6 flex flex-col h-full">
+                          {/* Header: Icon & Price */}
+                          <div className="flex justify-between items-start mb-6">
+                            <div
+                              className={`relative w-16 h-16 rounded-2xl flex items-center justify-center ${service.color || "bg-blue-50 text-blue-600"} group-hover:scale-110 transition-transform duration-500`}
+                            >
+                              <div className="absolute inset-0 bg-current opacity-10 rounded-2xl"></div>
+                              <IconComponent className="w-8 h-8 relative z-10" />
+                              {/* Decorative spark */}
+                              <Zap className="w-4 h-4 absolute -top-2 -right-2 text-yellow-400 fill-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity delay-100" />
+                            </div>
+                            <div className="text-right">
+                              <div className="flex items-center gap-1 justify-end mb-1">
+                                <div className="px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-700 dark:text-green-400 text-xs font-bold flex items-center gap-1">
+                                  <ShieldCheck className="w-3 h-3" />
+                                  Verified
                                 </div>
-                                <div className="text-right">
-                                    <div className="flex items-center gap-1 justify-end mb-1">
-                                        <div className="px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-700 dark:text-green-400 text-xs font-bold flex items-center gap-1">
-                                            <ShieldCheck className="w-3 h-3" />
-                                            Verified
-                                        </div>
-                                    </div>
-                                    <span className="block text-2xl font-extrabold text-gray-900 dark:text-white">
-                                        ${service.priceVal}
-                                    </span>
-                                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                                        per hour
-                                    </span>
+                              </div>
+                              <span className="block text-2xl font-extrabold text-gray-900 dark:text-white">
+                                ${service.priceVal}
+                              </span>
+                              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                                per hour
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Title & Desc */}
+                          <div className="mb-6">
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-rose-600 transition-colors">
+                              {service.name}
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
+                              {service.description}
+                            </p>
+                          </div>
+
+                          {/* Features */}
+                          <div className="space-y-3 mb-8 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl">
+                            {service.features
+                              ?.slice(0, 3)
+                              .map((feature, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300"
+                                >
+                                  <div className="w-5 h-5 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <CheckCircle className="w-3 h-3 text-rose-600 dark:text-rose-400" />
+                                  </div>
+                                  <span className="truncate">{feature}</span>
                                 </div>
-                            </div>
+                              ))}
+                          </div>
 
-                            {/* Title & Desc */}
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-rose-600 transition-colors">
-                                    {service.name}
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
-                                    {service.description}
-                                </p>
-                            </div>
-
-                            {/* Features */}
-                            <div className="space-y-3 mb-8 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl">
-                                {service.features?.slice(0, 3).map((feature, idx) => (
-                                    <div key={idx} className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300">
-                                        <div className="w-5 h-5 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center mr-3 flex-shrink-0">
-                                            <CheckCircle className="w-3 h-3 text-rose-600 dark:text-rose-400" />
-                                        </div>
-                                        <span className="truncate">{feature}</span>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Actions */}
-                            <div className="mt-auto grid grid-cols-2 gap-3">
-                                <Link
-                                    href={`/services/${service._id}`}
-                                    className="py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold text-sm text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                                >
-                                    Details
-                                </Link>
-                                <Link
-                                    href={`/booking/${service._id || service.id}`}
-                                    className="py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-purple-600 text-white font-bold text-sm text-center shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group/btn"
-                                >
-                                    Book Now
-                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                                </Link>
-                            </div>
-                         </div>
+                          {/* Actions */}
+                          <div className="mt-auto grid grid-cols-2 gap-3">
+                            <Link
+                              href={`/services/${service._id}`}
+                              className="py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold text-sm text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                            >
+                              Details
+                            </Link>
+                            {/* <Link
+                              href={`/booking/${service._id || service.id}`}
+                              className="py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-purple-600 text-white font-bold text-sm text-center shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group/btn"
+                            >
+                              Book Now
+                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                            </Link> */}
+                          </div>
+                        </div>
                       </motion.div>
                     );
                   })}
@@ -521,21 +538,21 @@ export default function ServicesPageContent() {
                 </button>
 
                 <div className="flex items-center gap-2 bg-white dark:bg-gray-800 p-2 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                     (page) => (
-                        <button
+                      <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
                         className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
-                            currentPage === page
+                          currentPage === page
                             ? "bg-gradient-to-tr from-rose-600 to-purple-600 text-white shadow-md scale-105"
                             : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
-                        >
+                      >
                         {page}
-                        </button>
+                      </button>
                     ),
-                    )}
+                  )}
                 </div>
 
                 <button

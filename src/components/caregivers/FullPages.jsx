@@ -184,7 +184,7 @@ const FullPages = ({ caregivers }) => {
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-6 flex-grow flex flex-col justify-between space-y-4 relative bg-white dark:bg-gray-800">
+                  <div className="p-4 pt-6 pb-6 flex-grow flex flex-col justify-between space-y-4 relative bg-white dark:bg-gray-800">
                     {/* Skill Tags */}
                     <div className="flex flex-wrap gap-2">
                       {["CPR Certified", "First Aid", "Non-smoker"]
@@ -236,10 +236,13 @@ const FullPages = ({ caregivers }) => {
               No Caregivers Found
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-8">
-              We couldn't find any caregivers matching <span className="text-rose-600 font-semibold">"{searchQuery}"</span>. 
-              Try adjusting your search terms or clearing filters.
+              We couldn't find any caregivers matching{" "}
+              <span className="text-rose-600 font-semibold">
+                "{searchQuery}"
+              </span>
+              . Try adjusting your search terms or clearing filters.
             </p>
-            <button 
+            <button
               onClick={() => setSearchQuery("")}
               className="group px-8 py-3 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-full font-bold text-gray-700 dark:text-gray-200 hover:border-rose-500 hover:text-rose-600 transition-all hover:shadow-lg hover:shadow-rose-500/10 flex items-center gap-2"
             >

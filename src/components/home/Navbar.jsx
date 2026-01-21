@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   const user = session?.user || null;
-  console.log("User Session", session?.user.image);
+  // console.log("User Session", session?.user.image);
 
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
