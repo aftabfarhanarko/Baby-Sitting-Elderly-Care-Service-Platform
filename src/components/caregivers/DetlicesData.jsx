@@ -17,7 +17,7 @@ import {
 import React, { useState } from "react";
 import CaregiversModal from "@/components/modal/CaregiversModal";
 
-const DetlicesData = ({ caregiver }) => {
+const DetlicesData = ({ caregiver, bookingStatus }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -126,13 +126,23 @@ const DetlicesData = ({ caregiver }) => {
                 </div>
               </div>
 
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="w-full mt-6 bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-rose-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-              >
-                <Calendar className="w-5 h-5" />
-                Book Now
-              </button>
+              {bookingStatus ? (
+                <button
+                  disabled
+                  className="w-full mt-6 bg-gradient-to-r from-pink-600 to-red-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-500/30 cursor-not-allowed flex items-center justify-center gap-2 opacity-90"
+                >
+                  <CheckCircle className="w-5 h-5" />
+                  Already Booked
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full mt-6 bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-rose-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book Now
+                </button>
+              )}
             </div>
           </motion.div>
 

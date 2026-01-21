@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { caregivers } from "@/data/caregivers";
 import DetlicesData from "@/components/caregivers/DetlicesData";
+import { useQuery } from "@tanstack/react-query";
+import { caregiverSingleData } from "@/actions/serverData/caregiverAPi";
 
 const CaregiverDetailsPage = ({ caregiver: serverCaregiver }) => {
   const params = useParams();
@@ -24,6 +26,17 @@ const CaregiverDetailsPage = ({ caregiver: serverCaregiver }) => {
     }
   }, [params?.id, serverCaregiver]);
 
+   const { data: bookingStatus } = useQuery({
+    queryKey: ["bookingStatus", serverCaregiver?._id ],
+    queryFn: async () => {
+      const query = { caregiverId: serverCaregiver?._id  };
+      const result = await caregiverSingleData(query);
+      console.log("Single Data Result:", result);
+      return result;
+    },
+    enabled: !!(serverCaregiver?._id),
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-gray-900 dark:via-rose-950 dark:to-gray-900 flex items-center justify-center">
@@ -32,7 +45,7 @@ const CaregiverDetailsPage = ({ caregiver: serverCaregiver }) => {
     );
   }
 
-  return <DetlicesData caregiver={caregiver} />;
+  return <DetlicesData caregiver={caregiver} bookingStatus={bookingStatus} />;
 };
 
 export default CaregiverDetailsPage;
