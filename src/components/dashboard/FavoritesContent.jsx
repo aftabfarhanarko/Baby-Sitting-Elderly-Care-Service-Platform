@@ -1,134 +1,232 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Star, MapPin, Heart, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Calendar,
+  Clock,
+  Trash2,
+  CheckCircle,
+  Briefcase,
+  AlertCircle,
+  Search,
+} from "lucide-react";
+import Swal from "sweetalert2";
 
-const FavoritesContent = () => {
-  // Mock Data
-  const favorites = [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      role: 'Professional Nanny',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      rating: 4.9,
-      reviews: 124,
-      hourlyRate: '$25',
-      location: 'Brooklyn, NY',
-      experience: '5 years',
-      verified: true
-    },
-    {
-      id: 2,
-      name: 'Emily Davis',
-      role: 'Babysitter',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      rating: 4.8,
-      reviews: 89,
-      hourlyRate: '$20',
-      location: 'Manhattan, NY',
-      experience: '3 years',
-      verified: true
-    },
-    {
-      id: 3,
-      name: 'Michael Brown',
-      role: 'Pet Sitter',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      rating: 4.7,
-      reviews: 56,
-      hourlyRate: '$18',
-      location: 'Queens, NY',
-      experience: '2 years',
-      verified: true
-    },
-    {
-      id: 4,
-      name: 'Jessica Wilson',
-      role: 'Elder Care',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      rating: 5.0,
-      reviews: 42,
-      hourlyRate: '$30',
-      location: 'Staten Island, NY',
-      experience: '7 years',
-      verified: true
-    }
-  ];
+const FavoritesContent = ({ data = [] }) => {
+  const favorites = data && data.length > 0 ? data : [];
+
+  // Handle Delete
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#e11d48", // rose-600
+      cancelButtonColor: "#6b7280", // gray-500
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Delete item:", id);
+        // Add your delete logic here (API call)
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
+
+  // Handle Confirm
+  const handleConfirm = (id) => {
+    Swal.fire({
+      title: "Confirm Booking?",
+      text: "Do you want to proceed with this booking?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#10b981", // emerald-500
+      cancelButtonColor: "#6b7280", // gray-500
+      confirmButtonText: "Yes, confirm it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Confirm item:", id);
+        // Add your confirm logic here (API call)
+        Swal.fire("Confirmed!", "Booking has been confirmed.", "success");
+      }
+    });
+  };
+
+  if (!favorites || favorites.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Favorite Caregivers
+            </h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">
+              Your saved list of trusted professionals
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center py-20 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-[2rem] border border-gray-200 dark:border-gray-700 border-dashed">
+          <div className="w-20 h-20 bg-rose-50 dark:bg-rose-900/20 rounded-full flex items-center justify-center mb-6">
+            <Search className="w-10 h-10 text-rose-500" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            No Favorites Found
+          </h3>
+          <p className="text-center max-w-sm px-4">
+            You haven't saved any caregivers yet. Browse our list to find the perfect match.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Favorite Caregivers</h1>
-          <p className="text-gray-500 dark:text-gray-400">Your saved list of trusted professionals</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Favorite Caregivers
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">
+            Your saved list of trusted professionals
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="px-4 py-1.5 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-sm font-bold">
+            {favorites.length} Saved
+          </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {favorites.map((caregiver, index) => (
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {favorites.map((item, index) => (
           <motion.div
-            key={caregiver.id}
+            key={item._id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-all duration-300"
+            className="group bg-white dark:bg-gray-800 rounded-[2rem] border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:shadow-rose-500/10 transition-all duration-500 flex flex-col"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex gap-4">
-                  <div className="relative">
-                    <img 
-                      src={caregiver.image} 
-                      alt={caregiver.name} 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm"
-                    />
-                    {caregiver.verified && (
-                      <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white p-0.5 rounded-full border-2 border-white dark:border-gray-800">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
+            {/* Card Header */}
+            <div className="p-6 pb-4">
+              <div className="flex justify-between items-start gap-4 mb-4">
+                {/* Booker Info - Left Side */}
+                <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-700/50 p-2 rounded-xl pr-4">
+                  <img
+                    src={item.bookerImages}
+                    alt={item.bookerName}
+                    className="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-gray-600"
+                  />
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                      Booked By
+                    </h4>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white truncate max-w-[100px]" title={item.bookerName}>
+                      {item.bookerName}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Total Cost - Right Side */}
+                <div className="text-right">
+                  <span className="block text-2xl font-bold text-rose-600 dark:text-rose-400">
+                    ${item.totalCost}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    Total Amount
+                  </span>
+                </div>
+              </div>
+
+              {/* Caregiver Info */}
+              <div className="flex gap-4 items-center">
+                <div className="relative">
+                  <img
+                    src={item.caregiverImage}
+                    alt={item.caregiverName}
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-white dark:border-gray-700 shadow-lg group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div
+                    className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center ${
+                      item.state === "confirmed"
+                        ? "bg-emerald-500"
+                        : "bg-amber-500"
+                    }`}
+                  >
+                    {item.state === "confirmed" ? (
+                      <CheckCircle className="w-3.5 h-3.5 text-white" />
+                    ) : (
+                      <Clock className="w-3.5 h-3.5 text-white" />
                     )}
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                      {caregiver.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{caregiver.role}</p>
-                    <div className="flex items-center gap-1 text-xs text-yellow-500 mt-1">
-                      <Star className="w-3 h-3 fill-current" />
-                      <span className="font-medium text-gray-900 dark:text-white">{caregiver.rating}</span>
-                      <span className="text-gray-400">({caregiver.reviews})</span>
-                    </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight mb-1">
+                    {item.caregiverName}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-rose-500 dark:text-rose-400">
+                    <Briefcase className="w-3.5 h-3.5" />
+                    <span className="text-sm font-medium">
+                      {item.service}
+                    </span>
                   </div>
                 </div>
-                <button className="text-rose-500 hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 transition-colors">
-                  <Heart className="w-5 h-5 fill-current" />
-                </button>
+              </div>
+            </div>
+
+            {/* Card Body Details */}
+            <div className="px-6 py-4 bg-gray-50/50 dark:bg-gray-800/50 border-y border-gray-100 dark:border-gray-700 space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                  <Calendar className="w-4 h-4 text-rose-500" />
+                  <span>Start Date</span>
+                </div>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {item.startDate}
+                </span>
               </div>
 
-              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
-                <div className="flex items-center gap-1">
-                  <MapPin className="w-4 h-4" />
-                  {caregiver.location}
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                  <Clock className="w-4 h-4 text-purple-500" />
+                  <span>Start Time</span>
                 </div>
-                <div className="w-1 h-1 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
-                <div>{caregiver.experience} exp</div>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {item.startTime}
+                </span>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                <div className="text-sm">
-                  <span className="font-bold text-gray-900 dark:text-white text-lg">{caregiver.hourlyRate}</span>
-                  <span className="text-gray-500 dark:text-gray-400">/hr</span>
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                  <AlertCircle className="w-4 h-4 text-amber-500" />
+                  <span>Duration</span>
                 </div>
-                <Link 
-                  href={`/caregivers/${caregiver.id}`}
-                  className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 group-hover:bg-primary-600 group-hover:text-white dark:group-hover:bg-primary-500 transition-all"
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {item.days} Days ({item.hoursPerDay}h/day)
+                </span>
+              </div>
+            </div>
+
+            {/* Card Footer Actions */}
+            <div className="p-6 mt-auto">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <Trash2 className="w-4 h-4" />
+                  Delete
+                </button>
+                <button
+                  onClick={() => handleConfirm(item._id)}
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-rose-600 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  <CheckCircle className="w-4 h-4" />
+                  Confirm
+                </button>
               </div>
             </div>
           </motion.div>

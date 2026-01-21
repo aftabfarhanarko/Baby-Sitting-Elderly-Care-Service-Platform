@@ -18,7 +18,6 @@ export const caregiverSingleData = async (query) => {
     if (!session) {
       return null;
     }
-    console.log("MY Session", session.user.email, "My Id", query.caregiverId);
 
     // Create a flexible query for caregiverId to match either String or ObjectId
     let caregiverIdCondition = { caregiverId: query.caregiverId };
@@ -50,3 +49,5 @@ export const caregiverSingleData = async (query) => {
     return null;
   }
 };
+
+

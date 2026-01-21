@@ -154,6 +154,7 @@ const CaregiversModal = ({ isOpen, onClose, caregiver }) => {
             caregiverImage: caregiver.image,
             bookerEmail: session?.user?.email,
             bookerName: session?.user?.name,
+            state:"pending",
             bookerImages: session?.user?.image,
             createdAt: new Date().toISOString(),
             ...formData,
