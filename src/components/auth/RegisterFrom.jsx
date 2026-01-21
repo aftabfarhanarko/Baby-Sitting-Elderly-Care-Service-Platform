@@ -15,6 +15,7 @@ import {
   UserPlus,
   ArrowRight,
 } from "lucide-react";
+import { imageUpload } from "@/utils/imagesUpDB";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -97,20 +98,17 @@ const RegisterFrom = () => {
 
     setLoading(true);
 
+    const imageUrl = await imageUpload(profileImage);
     try {
       const submitData = {
         name: formData.name,
         email: formData.email,
         contact: formData.contact,
-        nid: formData.nid,
+        nidNumber: formData.nid,
         password: formData.password,
-        profileImage: profileImage
-          ? {
-              name: profileImage.name,
-              size: profileImage.size,
-              type: profileImage.type,
-            }
-          : null,
+        profileImage: imageUrl,
+        role:"user",
+        createdAt:new Date().toISOString()
       };
 
       console.log("Form Data:", submitData);
