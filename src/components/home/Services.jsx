@@ -10,6 +10,7 @@ import React from 'react';
 import CountUp from 'react-countup';
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
@@ -26,6 +27,7 @@ const staggerContainer = {
 };
 
 const Services = () => {
+  const router = useRouter();
       const services = [
         {
           id: 1,
@@ -55,6 +57,9 @@ const Services = () => {
           priceVal: 25,
         },
       ];
+      const handelPush = () => {
+        router.push("/services")
+      }
     return (
         <div>
             {/* 4. Services Section */}
@@ -82,6 +87,7 @@ const Services = () => {
           >
             {services.map((service) => (
               <motion.div
+              onClick={handelPush}
                 key={service.id}
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"

@@ -29,12 +29,12 @@ const PartnersCompany = () => {
   const partners = ["Google", "Microsoft", "Spotify", "Airbnb", "Uber"];
   return (
     <div>
+      <p className="text-sm flex justify-center items-center font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6">
+        Trusted by working parents at
+      </p>
       {/* 1.5 Partners Section */}
-      <section className="py-10 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+      {/* <section className="py-10 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6">
-            Trusted by working parents at
-          </p>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
             {partners.map((partner, i) => (
               <span
@@ -46,7 +46,7 @@ const PartnersCompany = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 2. Stats Section */}
       <section className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
