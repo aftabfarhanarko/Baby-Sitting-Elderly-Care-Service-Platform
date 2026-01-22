@@ -102,19 +102,20 @@ const DashboardLayoutContent = ({ children }) => {
               )}
             </button>
 
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-9 h-9 bg-gradient-to-tr from-rose-500 via-rose-500 to-orange-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-rose-500/30 group hover:shadow-rose-500/50 transition-all">
-                <Sparkles
-                  size={20}
-                  fill="currentColor"
-                  className="group-hover:rotate-12 transition-transform"
-                />
+            <div className="flex items-center justify-center  gap-34">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Link href="/dashboard">
+                  <img src="/logo2.png" className="w-36 h-12"></img>
+                </Link>
               </div>
               <Link
-                href="/dashboard"
-                className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 hidden sm:inline"
+                href="/"
+                className="group hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 text-rose-600 dark:text-rose-400 hover:from-rose-100 hover:to-orange-100 dark:hover:from-rose-900/40 dark:hover:to-orange-900/40 transition-all duration-300 border border-rose-200/50 dark:border-rose-800/50 hover:shadow-lg hover:shadow-rose-500/10 font-medium"
+                title="Back to Home"
               >
-                Care.xyz
+                <Home className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+                <span className="text-sm hidden lg:inline">Home</span>
+                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-1 transition-all" />
               </Link>
             </div>
           </div>
@@ -131,15 +132,6 @@ const DashboardLayoutContent = ({ children }) => {
             </div>
 
             {/* Back to Home Button - Premium Style */}
-            <Link
-              href="/"
-              className="group hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 text-rose-600 dark:text-rose-400 hover:from-rose-100 hover:to-orange-100 dark:hover:from-rose-900/40 dark:hover:to-orange-900/40 transition-all duration-300 border border-rose-200/50 dark:border-rose-800/50 hover:shadow-lg hover:shadow-rose-500/10 font-medium"
-              title="Back to Home"
-            >
-              <Home className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-              <span className="text-sm hidden lg:inline">Home</span>
-              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-1 transition-all" />
-            </Link>
 
             {/* Notification Bell */}
             <button className="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 relative transition-colors text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 group">
