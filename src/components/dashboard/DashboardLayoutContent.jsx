@@ -47,15 +47,16 @@ const DashboardLayoutContent = ({ children }) => {
             icon: Calendar,
           },
           {
-            name: "Messages",
-            href: "/dashboard/messages",
-            icon: MessageSquare,
-          },
-          {
             name: "Caregivers Booking",
             href: "/dashboard/favorites",
             icon: Heart,
           },
+          {
+            name: "Messages",
+            href: "/dashboard/messages",
+            icon: MessageSquare,
+          },
+
           { name: "Payments", href: "/dashboard/payments", icon: CreditCard },
           { name: "Profile", href: "/dashboard/profile", icon: User },
           { name: "Settings", href: "/dashboard/settings", icon: Settings },
