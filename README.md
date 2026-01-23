@@ -1,6 +1,8 @@
 # 🏥 Care.xyz (Care.IO)
 ### Baby Sitting & Elderly Care Service Platform
 
+## Live Demo:[Care.xyz](https://baby-sitting-pi.vercel.app)
+
 ## 🧡 About Care.xyz
 
 Care.xyz (also known as Care.IO) is a service-oriented web application designed to bridge the gap between families and trusted caregiving professionals. The platform focuses on providing **safe, reliable, and easily accessible care services** for children, elderly individuals, and sick or special-needs family members within the comfort of their own homes.
