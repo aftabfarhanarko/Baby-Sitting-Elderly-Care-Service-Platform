@@ -58,7 +58,7 @@ export const updateMyBooking = async (id) => {
     };
   }
 };
-
+// My Services Booking  Deleted
 export const deleteMyBooking = async (id) => {
   try {
     // 1. Prepare query
@@ -102,5 +102,79 @@ export const myCaregiverBookings = async (email) => {
   } catch (error) {
     console.error("Error fetching caregiver bookings:", error);
     return [];
+  }
+};
+
+// Favorite Caregivers  Update
+
+export const updateCaregivers = async (id) => {
+  try {
+    // 2. Prepare query & update
+    const query = { _id: new ObjectId(id) };
+    const update = {
+      $set: {
+        state: "confirmed",
+        updatedAt: new Date().toISOString(),
+      },
+    };
+    // 3. Update database
+    const result = await dbConnect(collections.BOOKINGCAREGIVERS).updateOne(
+      query,
+      update,
+    );
+
+    // 4. Handle not found case
+    if (result.matchedCount === 0) {
+      return {
+        success: false,
+        message: "Caregivers  not found",
+      };
+    }
+
+    return {
+      success: true,
+      message: "Caregivers  confirmed successfully",
+      result,
+    };
+  } catch (error) {
+    console.error("Update Caregivers  Error:", error);
+
+    return {
+      success: false,
+      message: "Failed to update Caregivers ",
+    };
+  }
+};
+
+export const deleteCaregivers = async (id) => {
+  try {
+    // 1. Prepare query
+    const query = { _id: new ObjectId(id) };
+
+    // 2. Delete from database
+    const result = await dbConnect(collections.BOOKINGCAREGIVERS).deleteOne(
+      query,
+    );
+
+    // 3. Handle not found case
+    if (result.deletedCount === 0) {
+      return {
+        success: false,
+        message: "Caregivers not found",
+      };
+    }
+
+    return {
+      success: true,
+      message: "Caregivers deleted successfully",
+      result,
+    };
+  } catch (error) {
+    console.error("Delete Caregivers Error:", error);
+
+    return {
+      success: false,
+      message: "Failed to delete Caregivers",
+    };
   }
 };

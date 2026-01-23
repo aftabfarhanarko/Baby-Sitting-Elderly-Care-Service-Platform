@@ -12,6 +12,10 @@ import {
   CheckCheck,
 } from "lucide-react";
 import Swal from "sweetalert2";
+import {
+  deleteCaregivers,
+  updateCaregivers,
+} from "@/actions/serverData/dashbordApi";
 
 const FavoritesContent = ({ data = [] }) => {
   const favorites = Array.isArray(data) && data.length > 0 ? data : [];
@@ -91,11 +95,14 @@ const FavoritesContent = ({ data = [] }) => {
       confirmButtonColor: "#e11d48",
       cancelButtonColor: "#6b7280",
       confirmButtonText: "Yes, delete it",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         // TODO: API call to delete
-        console.log("Deleting booking:", id);
-        Swal.fire("Deleted!", "Booking has been removed.", "success");
+        const result = await deleteCaregivers(id);
+        if (result.success) {
+          Swal.fire("Deleted!", "Booking has been removed.", "success");
+        }
+        console.log("Deleting booking:", result);
       }
     });
   };
@@ -109,11 +116,15 @@ const FavoritesContent = ({ data = [] }) => {
       confirmButtonColor: "#10b981",
       cancelButtonColor: "#6b7280",
       confirmButtonText: "Yes, confirm",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         // TODO: API call to confirm
-        console.log("Confirming booking:", id);
-        Swal.fire("Confirmed!", "Booking is now confirmed.", "success");
+        const result = await updateCaregivers(id);
+
+        if (result.success) {
+          Swal.fire("Confirmed!", "Booking is now confirmed.", "success");
+        }
+        console.log("Confirming booking:", result);
       }
     });
   };
