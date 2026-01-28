@@ -109,14 +109,14 @@ const DashboardLayoutContent = ({ children }) => {
             </button>
 
             <div className="flex items-center justify-center  gap-34">
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className=" hidden  md:block items-center gap-2 sm:gap-3">
                 <Link href="/dashboard">
                   <img src="/logo2.png" className="w-36 h-12"></img>
                 </Link>
               </div>
               <Link
                 href="/"
-                className="group hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 text-rose-600 dark:text-rose-400 hover:from-rose-100 hover:to-orange-100 dark:hover:from-rose-900/40 dark:hover:to-orange-900/40 transition-all duration-300 border border-rose-200/50 dark:border-rose-800/50 hover:shadow-lg hover:shadow-rose-500/10 font-medium"
+                className="group  sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 text-rose-600 dark:text-rose-400 hover:from-rose-100 hover:to-orange-100 dark:hover:from-rose-900/40 dark:hover:to-orange-900/40 transition-all duration-300 border border-rose-200/50 dark:border-rose-800/50 hover:shadow-lg hover:shadow-rose-500/10 font-medium"
                 title="Back to Home"
               >
                 <Home className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />

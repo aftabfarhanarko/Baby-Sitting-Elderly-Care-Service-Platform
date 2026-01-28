@@ -351,6 +351,88 @@ export const deleteMyCaregiver = async (id) => {
   }
 };
 
+// My Services Functions
+export const getMyServices = async (email) => {
+  try {
+    const result = await dbConnect(collections.SERVICES)
+      .find({ "contactInfo.email": email })
+      .toArray();
+
+    return result.map((item) => ({
+      ...item,
+      _id: item._id.toString(),
+    }));
+  } catch (error) {
+    console.error("Error fetching services by email:", error);
+    return [];
+  }
+};
+
+export const createMyService = async (serviceData) => {
+  try {
+    const result = await dbConnect(collections.SERVICES).insertOne({
+      ...serviceData,
+      createdAt: new Date().toISOString(),
+    });
+
+    if (!result.insertedId) {
+      return { success: false, message: "Failed to create service" };
+    }
+
+    return {
+      success: true,
+      message: "Service created successfully",
+      insertedId: result.insertedId,
+    };
+  } catch (error) {
+    console.error("Error creating service:", error);
+    return { success: false, message: "Failed to create service" };
+  }
+};
+
+export const updateMyService = async (id, updateData) => {
+  try {
+    const { _id, ...safeUpdateData } = updateData;
+    const query = { _id: new ObjectId(id) };
+    const update = {
+      $set: {
+        ...safeUpdateData,
+        updatedAt: new Date().toISOString(),
+      },
+    };
+
+    const result = await dbConnect(collections.SERVICES).updateOne(
+      query,
+      update,
+    );
+
+    if (result.matchedCount === 0) {
+      return { success: false, message: "Service not found" };
+    }
+
+    return { success: true, message: "Service updated successfully" };
+  } catch (error) {
+    console.error("Error updating service:", error);
+    return { success: false, message: "Failed to update service" };
+  }
+};
+
+export const deleteMyService = async (id) => {
+  try {
+    const query = { _id: new ObjectId(id) };
+    const result = await dbConnect(collections.SERVICES).deleteOne(query);
+
+    if (result.deletedCount === 0) {
+      return { success: false, message: "Service not found" };
+    }
+
+    return { success: true, message: "Service deleted successfully" };
+  } catch (error) {
+    console.error("Error deleting service:", error);
+    return { success: false, message: "Failed to delete service" };
+  }
+};
+
 // Contact Messaage Data
 export const getMessagesData = async () => {
   try {
