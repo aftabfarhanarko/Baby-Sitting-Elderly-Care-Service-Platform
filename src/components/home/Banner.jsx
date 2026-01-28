@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
   Shield,
@@ -9,172 +9,296 @@ import {
   Users,
   Search,
   ArrowRight,
+  Play,
 } from "lucide-react";
 import Image from "next/image";
 
+const SLIDES = [
+  {
+    id: 1,
+    image:
+      "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1974&auto=format&fit=crop",
+    alt: "Happy Baby Care",
+  },
+  {
+    id: 2,
+    image:
+      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1974&auto=format&fit=crop",
+    alt: "Compassionate Senior Care",
+  },
+  {
+    id: 3,
+    image:
+      "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?q=80&w=1974&auto=format&fit=crop",
+    alt: "Family Trust & Bonding",
+  },
+  {
+    id: 4,
+    image:
+      "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1974&auto=format&fit=crop",
+    alt: "Child Development & Play",
+  },
+  {
+    id: 5,
+    image:
+      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1974&auto=format&fit=crop",
+    alt: "Elderly Companionship",
+  },
+  {
+    id: 6,
+    image:
+      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1974&auto=format&fit=crop",
+    alt: "Educational Nanny",
+  },
+  {
+    id: 7,
+    image:
+      "https://images.unsplash.com/photo-1581579186913-45ac3e6e3dd2?q=80&w=1974&auto=format&fit=crop",
+    alt: "Professional Housekeeping",
+  },
+  {
+    id: 8,
+    image:
+      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=1974&auto=format&fit=crop",
+    alt: "Loving Pet Care",
+  },
+  {
+    id: 9,
+    image:
+      "https://images.unsplash.com/photo-1510154221556-06256b3560b8?q=80&w=1974&auto=format&fit=crop",
+    alt: "Peaceful Baby Sleep",
+  },
+  {
+    id: 10,
+    image:
+      "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=1974&auto=format&fit=crop",
+    alt: "Happy Family Moments",
+  },
+];
+
 const Banner = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] bg-gradient-to-b from-slate-50 to-white overflow-hidden flex items-center pt-20">
-      {/* Soft Background Blobs */}
+    <section className="relative min-h-[95vh] bg-gradient-to-b from-rose-50/50 via-white to-white overflow-hidden flex items-center pt-24 pb-12">
+      {/* Premium Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -right-[5%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-3xl opacity-60" />
-        <div className="absolute top-[20%] -left-[10%] w-[500px] h-[500px] bg-teal-50/50 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-[0%] right-[20%] w-[400px] h-[400px] bg-rose-50/50 rounded-full blur-3xl opacity-50" />
+        <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-rose-100/40 rounded-full blur-[100px] opacity-60 mix-blend-multiply" />
+        <div className="absolute top-[30%] -left-[10%] w-[600px] h-[600px] bg-pink-100/40 rounded-full blur-[100px] opacity-60 mix-blend-multiply" />
+        <div className="absolute bottom-[0%] right-[20%] w-[500px] h-[500px] bg-orange-50/40 rounded-full blur-[80px] opacity-50 mix-blend-multiply" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-10"
           >
             {/* Trust Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-1.5 shadow-sm"
+              className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-rose-100 rounded-full pl-2 pr-5 py-1.5 shadow-lg shadow-rose-100/50"
             >
-              <div className="flex -space-x-2">
+              <div className="flex -space-x-3">
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[10px] overflow-hidden"
+                    className="w-8 h-8 rounded-full bg-rose-100 border-2 border-white flex items-center justify-center overflow-hidden"
                   >
-                    <span className="sr-only">User</span>
-                    <Users className="w-3 h-3 text-slate-400" />
+                    <img
+                      src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                      alt="User"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 ))}
               </div>
-              <span className="text-slate-600 text-sm font-medium">
-                Trusted by 10,000+ Families
-              </span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs text-gray-500 font-medium">
+                  Trusted by
+                </span>
+                <span className="text-sm font-bold text-rose-950">
+                  10,000+ Families
+                </span>
+              </div>
             </motion.div>
 
             {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] text-slate-900">
-                Compassionate Care <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] text-gray-900 tracking-tight">
+                Premium Care <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-pink-600">
                   For Your Loved Ones
                 </span>
               </h1>
-              <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-                Find professional, verified caregivers for children, seniors,
-                and pets. We connect families with trusted experts who treat
-                your loved ones like their own.
+              <p className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-xl font-medium">
+                Experience the peace of mind that comes with professional,
+                verified care. We connect you with elite caregivers who treat
+                your family like their own.
               </p>
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button className="px-8 py-4 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold shadow-lg shadow-teal-600/20 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+              <button className="px-8 py-4.5 rounded-2xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold shadow-xl shadow-rose-600/20 hover:shadow-rose-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 group">
                 <Search className="w-5 h-5" />
                 Find a Caregiver
+                <ArrowRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="px-8 py-4 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
-                Become a Caregiver
-                <ArrowRight className="w-5 h-5" />
+              <button className="px-8 py-4.5 rounded-2xl bg-white border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 shadow-sm hover:shadow-md">
+                <Play className="w-5 h-5 fill-rose-600 text-rose-600" />
+                How it Works
               </button>
             </div>
 
             {/* Features List */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-y-4 gap-x-8 pt-6 border-t border-rose-100/50">
               {[
-                { icon: Shield, text: "Background Verified" },
+                { icon: Shield, text: "100% Verified Staff" },
                 { icon: Heart, text: "Compassionate Care" },
-                { icon: Star, text: "Top-Rated Pros" },
-                { icon: CheckCircle2, text: "Safety First" },
+                { icon: Star, text: "Top-Rated Professionals" },
+                { icon: CheckCircle2, text: "Safety First Protocol" },
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 text-slate-600"
+                  className="flex items-center gap-3 text-gray-600 group"
                 >
-                  <item.icon className="w-5 h-5 text-teal-500 fill-teal-50" />
-                  <span className="font-medium text-sm">{item.text}</span>
+                  <div className="p-2 rounded-lg bg-rose-50 text-rose-600 group-hover:bg-rose-100 transition-colors">
+                    <item.icon className="w-4 h-4" />
+                  </div>
+                  <span className="font-semibold text-sm">{item.text}</span>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Visuals */}
+          {/* Right Visuals - Premium Slider */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block h-[650px]"
           >
             {/* Main Image Container */}
-            <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl shadow-slate-200 border-8 border-white bg-slate-100 aspect-[4/5] max-h-[600px] w-full mx-auto">
-              {/* Placeholder for real image - using a gradient/pattern for now if no image provided */}
-              <div className="absolute inset-0 bg-slate-100 flex items-end justify-center">
-                {/* Abstract Representation of Caregiver/Family */}
-                <div className="w-full h-full bg-gradient-to-b from-slate-50 to-slate-200 relative">
-                  {/* You would typically use <Image /> here with a real photo */}
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-300">
-                    <Users className="w-32 h-32 opacity-20" />
+            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl shadow-rose-900/10 border-[8px] border-white">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={SLIDES[currentSlide].image}
+                    alt={SLIDES[currentSlide].alt}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Slider Dots */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {SLIDES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      currentSlide === idx
+                        ? "w-8 bg-white"
+                        : "w-2 bg-white/50 hover:bg-white/80"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Floating Info Cards - Premium Glassmorphism */}
+
+            {/* Card 1: Live Status */}
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="absolute top-12 -right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 z-30 w-56"
+            >
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center">
+                    <Heart className="w-5 h-5 text-rose-600 fill-rose-600" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse" />
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900">
+                    Care in Action
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Live monitoring active
                   </div>
                 </div>
               </div>
+            </motion.div>
 
-              {/* Floating Info Cards */}
-
-              {/* Card 1: Review */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-12 -right-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 w-48 z-20"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">
-                      4.9/5 Rating
+            {/* Card 2: Rating */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="absolute bottom-20 -left-12 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 z-30 max-w-[240px]"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-full border-2 border-white overflow-hidden"
+                    >
+                      <img
+                        src={`https://i.pravatar.cc/100?img=${i + 20}`}
+                        alt="User"
+                      />
                     </div>
-                    <div className="text-[10px] text-slate-500">
-                      From parents
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full w-[95%] bg-yellow-400 rounded-full" />
-                </div>
-              </motion.div>
-
-              {/* Card 2: Status */}
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute bottom-12 -left-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 z-20"
-              >
-                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-green-600" />
-                </div>
+                <div className="text-xs text-gray-500 pl-2">+2k Reviews</div>
+              </div>
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-bold text-slate-900">
-                    100% Verified
+                  <div className="flex gap-1 mb-1">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star
+                        key={i}
+                        className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"
+                      />
+                    ))}
                   </div>
-                  <div className="text-xs text-slate-500">Safety Guarantee</div>
+                  <div className="text-xs font-bold text-gray-900">
+                    4.9/5 Average Rating
+                  </div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
 
-            {/* Decorative Elements behind image */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-teal-100/30 to-blue-100/30 rounded-full blur-3xl -z-10" />
+            {/* Decorative Elements */}
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl animate-pulse" />
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-rose-500/20 rounded-full blur-3xl animate-pulse delay-700" />
           </motion.div>
         </div>
       </div>
