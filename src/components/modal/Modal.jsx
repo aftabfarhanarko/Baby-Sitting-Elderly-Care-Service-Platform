@@ -18,8 +18,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { savedServicesData } from "@/actions/serverData/getData";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Modal = ({ isOpen, onClose, service, locationData, SetIsOpenModal }) => {
+  const queryClient = useQueryClient();
   const session = useSession();
   const user = session?.data?.user;
 
@@ -267,6 +269,12 @@ const Modal = ({ isOpen, onClose, service, locationData, SetIsOpenModal }) => {
           const result = await savedServicesData(bookingData);
 
           console.log("Booking Request Data:", result);
+
+          // Invalidate the booking status query to update the UI immediately
+          queryClient.invalidateQueries([
+            "bookingStatus",
+            service?._id || service?.id,
+          ]);
 
           swalWithBootstrapButtons.fire({
             title: "Booking Confirmed!",
