@@ -159,7 +159,6 @@ export const myCaregiverBookings = async (email) => {
 };
 
 // Favorite Caregivers  Update
-
 export const updateCaregivers = async (id) => {
   try {
     // 2. Prepare query & update
@@ -321,7 +320,6 @@ export const updateCurrentUser = async (id, updateData) => {
 };
 
 // My Add Caregivers
-
 export const createMyCaregiver = async (caregiverData) => {
   try {
     const result = await dbConnect(collections.CAREGIVERS).insertOne({
@@ -498,5 +496,116 @@ export const getMessagesData = async () => {
   } catch (error) {
     console.error("Error fetching messages data:", error);
     return [];
+  }
+};
+
+// Earning Chart Data Get Pipeline
+
+export const getEarningsData = async (email) => {
+  try {
+    if (!email) return { error: "No email provided" };
+
+    // 1. Get User's Services IDs (provider)
+    const myServices = await dbConnect(collections.SERVICES)
+      .find({ "contactInfo.email": email })
+      .project({ _id: 1 })
+      .toArray();
+    
+    const myServiceIds = myServices.map(s => s._id.toString());
+
+    // 2. Get User's Caregivers IDs (provider)
+    const myCaregivers = await dbConnect(collections.CAREGIVERS)
+      .find({ publishEmail: email })
+      .project({ _id: 1 })
+      .toArray();
+    
+    const myCaregiverIds = myCaregivers.map(c => c._id.toString());
+
+    // 3. Aggregate Service Bookings (Earnings)
+    const servicePipeline = [
+      { $match: { serviceId: { $in: myServiceIds } } },
+      {
+        $facet: {
+          monthly: [
+            {
+              $project: {
+                month: { $month: { $toDate: "$createdAt" } },
+                cost: { $toDouble: "$financials.totalCost" }
+              }
+            },
+            {
+              $group: {
+                _id: "$month",
+                total: { $sum: "$cost" }
+              }
+            }
+          ],
+          recent: [
+            { $sort: { createdAt: -1 } },
+            { $limit: 5 }
+          ]
+        }
+      }
+    ];
+
+    const serviceResults = await dbConnect(collections.BOOKING).aggregate(servicePipeline).toArray();
+    const serviceData = serviceResults[0] || { monthly: [], recent: [] };
+
+    // 4. Aggregate Caregiver Bookings (Earnings)
+    const caregiverPipeline = [
+      { $match: { caregiverId: { $in: myCaregiverIds } } },
+      {
+        $facet: {
+          monthly: [
+            {
+              $project: {
+                month: { $month: { $toDate: "$createdAt" } },
+                cost: { $toDouble: "$totalCost" }
+              }
+            },
+            {
+              $group: {
+                _id: "$month",
+                total: { $sum: "$cost" }
+              }
+            }
+          ],
+          recent: [
+            { $sort: { createdAt: -1 } },
+            { $limit: 5 }
+          ]
+        }
+      }
+    ];
+
+    const caregiverResults = await dbConnect(collections.BOOKINGCAREGIVERS).aggregate(caregiverPipeline).toArray();
+    const caregiverData = caregiverResults[0] || { monthly: [], recent: [] };
+
+    // Helper to format chart data
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const formatChartData = (data) => {
+       const map = {};
+       monthNames.forEach((m, i) => map[i + 1] = 0);
+       data.forEach(d => {
+         if (d._id) map[d._id] = d.total;
+       });
+       return monthNames.map((m, i) => ({ month: m, amount: map[i + 1] }));
+    };
+
+    return {
+      serviceChartData: formatChartData(serviceData.monthly),
+      caregiverChartData: formatChartData(caregiverData.monthly),
+      recentServices: serviceData.recent.map(item => ({ ...item, _id: item._id.toString() })),
+      recentCaregivers: caregiverData.recent.map(item => ({ ...item, _id: item._id.toString() }))
+    };
+
+  } catch (error) {
+    console.error("Error in getEarningsData:", error);
+    return {
+      serviceChartData: [],
+      caregiverChartData: [],
+      recentServices: [],
+      recentCaregivers: []
+    };
   }
 };
